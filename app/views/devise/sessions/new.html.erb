@@ -1,26 +1,103 @@
-<h2>Log in</h2>
+<body>
+  <!-- <div id="page"> -->
+    <header>
+      <div>
+        <a href="#"><img src="/assets/event.png"  style="width: 253px; height: 100px; padding: 2px 1px;" border=0>
+        </a>
+        <h2><a href="#" border=0><%="Event Management" %></a></h2>
+      </div>
+      <nav>
+        <table>
+          <tr>
+            <td>
+              <a href="welcomes/home">Home</a>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+              <a href="#">Contact Us</a>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+              <a href="#">About Us</a>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+              <a href="welcomes/home">Login</a>
+            </td>
+          </tr>
+        </table>
+      </nav>
+    </header>
+    <div id="main">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <table class="form-cls">
+            <tr>
+              <td>
+                <%= f.label :email %>
+              </td><td>
+                <%= f.email_field :email, autofocus: true %>
+              </td>
+            </tr><tr>
+               <td>
+                 <%= f.label :password %>
+               </td><td>
+                 <%= f.password_field :password, autocomplete: "off" %>
+               </td>
+            <% if devise_mapping.rememberable? -%>
+              </tr><tr>
+                <td>
+                  <%= f.check_box :remember_me %>
+                </td><td>
+                  <%= f.label :remember_me %>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td>
+                <%= f.submit "Log in" %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="/users/password/new" class="submit-btn-cls"><%="Forgot password?"%></a>
+              </td>
+            </tr>
+          </table>
+        <% end %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+        <%= render "devise/shared/links" %>
+     </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <div id="footer"></div>
+  <!-- </div> -->
+</body>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+<style>
+.form-cls{
+  margin: 200px 500px;
+}
+.submit-btn-cls{
+ color: #427fed !important;
+}
+
+</style>

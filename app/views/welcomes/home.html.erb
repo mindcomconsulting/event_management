@@ -7,19 +7,48 @@
         <h2><a href="#" border=0><%="Event Management" %></a></h2>
       </div>
       <nav>
-        <a href="#">About</a>
-        <a href="#">Reports</a>
-        <a href="#">Documents</a>
-        <a href="#">Checklists</a>
-        <a href="#">License Tools</a>
-        <a href="#">Presentations</a>
-        <a href="#">Software Releases</a>
+        <table>
+          <tr>
+            <td>
+              <a href="welcomes/home">Home</a>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+              <a href="#">Contact Us</a>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+              <a href="#">About Us</a>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+            </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>
+              <a href="welcomes/home">Login</a>
+            </td>
+          </tr>
+        </table>
       </nav>
     </header>
     <div id="main">
-        <a href="#"><img src="/assets/admin.jpeg"  class="admin-cls" border=0>
-        <a href="#"><img src="/assets/cust1.jpeg"  class="customer-cls" border=0>
-        <a href="#"><img src="/assets/reg1.jpeg"  class="registration-cls" border=0>
+        <a href="/users/sign_in"><img src="/assets/admin.jpeg"  class="admin-cls" border=0></a>
+        <a href="/users/sign_in"><img src="/assets/cust1.jpeg"  class="customer-cls" border=0></a>
+        <a href="/users/sign_up"><img src="/assets/reg1.jpeg"  class="registration-cls" border=0></a>
 
 
 
@@ -29,122 +58,6 @@
   <!-- </div> -->
 </body>
 
-<style>
+<script>
 
-	html, body
-  {
-    padding:0;
-    margin:0;
-    height:100%;
-  }
-  #page
-  {
-    min-height:100%;
-    position:relative;
-    height:100%;
-  }
-  header
-  {
-	  background-color:#115EA2;
-	  min-height:100px;
-	  width:100%;
-	  position:relative;
-  }
-  #main
-  {
-    width:1300px;
-    margin-left:auto;
-    margin-right:auto;
-    background-color:#F1F2F3;
-    min-height:90%;
-    height:auto;
-    height:89%;
-    margin:0 auto -50px;
-    vertical-align:bottom;
-  }
-  #footer
-  {
-    position:fixed;
-    width:100%;
-    bottom:0;
-    height:35px;
-    background-color: #115EA2;
-  }
-  header img
-  {
-    float:left;
-    display:inline;
-  }
-    
-  header h2
-  {
-    text-align:center;
-    font-size:44px;
-    color:#FFFFFF;
-    left:0px;
-    top:20px;
-    font-weight:bold;
-    font-family: Sans-serif;
-    float:left;
-    margin-top:20px;
-    margin-left:20px;
-    text-decoration:none;
-  }
-    
-  header h2, a, a:visited, a:hover, a:active
-  {
-    color: #FFFFFF;
-    text-decoration: none;
-  }
-    
-    /* NAVIGATION BAR CODE */
-    
-  nav
-  {
-    position:absolute;
-    top:100px;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#aaa;
-    color:green;
-    min-width:800px;
-    text-align:left;
-    height:20px;
-    padding:10px 20px;
-  }
-    
-    
-  nav a
-  {
-    font-size:14px;
-    margin:10px 0;height:20px;
-    padding:12px 10px;
-    color:#000;
-    text-decoration:none;
-  }
-    
-  nav a:hover
-  {
-  	background-color:#333;
-  }
-
-  .admin-cls{
-    height: 137px;
-    margin: 30px 510px;
-    width: 257px;
-  }
-  .customer-cls{
-    height: 158px;
-    margin: -38px 513px;
-    width: 253px;
-  }
-
-  .registration-cls{
-    height: 158px;
-    margin: 35px 512px;
-    width: 258px; 
-  }
-
-
-</style>
+</script>
