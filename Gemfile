@@ -57,3 +57,6 @@ end
 #gem 'devise'
 gem 'devise', '~> 3.4.0'
 gem 'mysql'
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventManagement</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+    
+  <header>
+    <div>
+      <a href="#"><img src="/assets/event.png"  style="width: 253px; height: 100px; padding: 2px 1px;" border=0>
+      </a>
+      <h2><a href="#" border=0><%="Event Management" %></a></h2>
+    </div>
+    <nav>
+      <table>
+        <tr>
+          <td class="padding-space">
+            <a href="#">My Details</a>
+          <td>
+            <%= link_to 'Update profile', edit_user_registration_path, :class => 'navbar-link' %>
+          </td>
+          <td class="padding-space">
+            <a href="#">Book an Event</a>
+          </td>
+          <td class="padding-space">
+            <a href="#">Booking Status</a>
+          </td>
+          <td class="padding-space">
+            <a href="#">Booking History</a>
+          </td>
+          <td class="padding-space">
+            <a href="#">Booking Feedback</a>
+          </td>
+          <td class="padding-space">
+            <a href="#">View Venue</a>
+          </td>
+          <td>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          </td>
+        </tr>
+      </table>
+    </nav>
+  </header>
+  <body>
+      <div id="main">
+      </div>
+
+    <%= yield %>
+    <div id="footer"></div>
+  </body>
+</html>
+
+
+
+
+

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/welcomes/user" => "welcomes#user", :as => "user"
   #get "/users/home" => "sessions#home", :as => "home"
   get "/welcomes/home" => "welcomes#home", :as => "home"
+  resources :events
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

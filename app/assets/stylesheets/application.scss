@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
 
 html, body
   {
@@ -93,7 +95,7 @@ html, body
     color:green;
     min-width:800px;
     text-align:left;
-    height:20px;
+    height:42px;
     padding:10px 20px;
   }
     
@@ -127,4 +129,15 @@ html, body
     height: 158px;
     margin: 35px 512px;
     width: 258px; 
+  }
+
+  .right-padding{
+    padding-right: 300px;
+  }
+
+  .padding-space{
+    padding-right: 60px;
+  }
+  .container{
+    padding: 65px 481px;
   }

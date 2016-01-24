@@ -14,8 +14,12 @@ class RegistrationsController < Devise::RegistrationsController
     puts"2222222222222222222222222222222222222"
     puts params
     puts"2222222222222222222222222222222222222"
+    @user=User.new(:email=>params[:user][:email],:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation])
+    if @user.save
     redirect_to :controller=>'sessions', :action=>'new'
-    # add custom create logic here
+    else
+      flash[:notice]="There is come problem"
+    end
   end
 
   def update
