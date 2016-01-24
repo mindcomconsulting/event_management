@@ -60,3 +60,7 @@ gem 'mysql'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+
+gem 'pry-byebug', group: [:development, :test]
+
+
