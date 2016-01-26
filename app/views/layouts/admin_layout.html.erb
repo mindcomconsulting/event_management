@@ -16,29 +16,25 @@
     <nav>
       <table>
         <tr>
-          <td class="padding-space">
-            <a href="#">My Profile</a>
+          <td class="layout-space">
+            <a href="/events">My Profile</a>
           <td>
             <%= link_to 'Update profile', edit_user_registration_path, :class => 'navbar-link' %>
           </td>
-          <td class="padding-space">
-            <a href="#">Book an Event</a>
+          <td class="layout-space">
+            <a href="/events/venue_detail">About Venue</a>
           </td>
-          <td class="padding-space">
-            <a href="#">Booking Status</a>
+          <td class="layout-space">
+            <a href="#">New Booking</a>
           </td>
-          <td class="padding-space">
-            <a href="#">Booking History</a>
+          <td class="layout-space">
+            <a href="#">View Booking</a>
           </td>
-          <td class="padding-space">
-            <a href="#">Booking Feedback</a>
-          </td>
-          <td class="padding-space">
+          <td class="layout-space">
             <a href="#">View Venue</a>
           </td>
-          <td class="padding-space">
-            <%#= link_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
-            <%= link_to "Cancel account", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <td class="layout-space">
+            <a href="#">View Feedback</a>
           </td>
           <td>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>

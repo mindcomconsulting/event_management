@@ -1,0 +1,68 @@
+<%= render :partial => 'events/event_left_menu' %>
+
+<div class="div-margin">
+	<button class="submit add-price">Add Price</button><br/><br/>
+
+	<%if @price.length>0%>
+		<table class="table-bordered table-layout">
+			<tr>
+				<th><%="Function"%></th>
+				<th><%="Price"%></th>
+				<th><%="Description"%></th>
+				<th><%="Actions"%></th>
+			</tr>
+			<%@price.each do |f|%>
+				<%@function_obj = FunctionDetail.find_by(:id=>f.function_id)%>
+		  	<tr>
+		  		<td>
+		    		<%= @function_obj.try(:name) %>
+		    	</td>
+		    	<td>
+		    		<%= f.try(:price) %>
+		    	</td>
+		     	<td>
+		    		<%= f.try(:description) %>
+		    	</td>
+		    	<td></td>
+		    </tr>
+		    <tr>
+		    	<td></td>
+		  	</tr>
+		  <%end%>
+	  </table>
+	<%else%>
+	 	<%="No Price Created"%>
+	<%end%>
+</div>
+
+<div id="priceDIVID"></div>
+
+<!-- <a class="edit-student-admission mg-icon-btn" title="Edit" href="/mg_student_admissions/1/edit">
+
+ -->
+
+
+<script>
+
+	$(document).on("click",".add-price",function(){
+	  var urlLink = "/events/add_price";
+	  $.ajax({
+	    url: urlLink,
+	    cache: false,
+	    success: function(data){
+	      $("#priceDIVID").dialog({
+	        modal: true,
+	        title: "Add Function",
+	        minHeight: "auto",
+	        minWidth: "auto",
+	        open: function(){
+	          $(this).html(data);
+	        }
+	      });
+	    }
+	  });
+  });
+ 
+</script>
+
+	              

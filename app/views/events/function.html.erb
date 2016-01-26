@@ -1,0 +1,27 @@
+<%= form_for :function, :url=>{:controller=>'events',:action=>'create_function' } do |f| %>
+  <table>
+  	<tr>
+  		<td>
+    		<%= f.label :name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    		<%= f.text_field :name %>
+    	</td>
+    </tr>
+    <tr>
+    	<td>
+    		<%= f.label :description %>
+    		<%= f.text_area :description %>
+    	</td>
+    </tr>
+    <tr>
+    	<td>
+    		<div class="mg-div-cls">
+    			<%= f.submit 'Submit', :class => 'submit' %>
+    			<%= link_to "cancel", {:controller=>'events',:action=>'venue_detail'}, :class => "submit cancel-btn" %>
+    		</div>
+    	</td>
+  	</tr>
+  </table>
+<% end %>
+ 
+
+

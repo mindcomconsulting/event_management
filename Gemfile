@@ -64,3 +64,8 @@ gem 'autoprefixer-rails'
 gem 'pry-byebug', group: [:development, :test]
 
 
+gem 'jquery-ui-rails', '~> 4.2.1'
+
+
+#gem 'font-awesome-sass', '~> 4.3.0'
+

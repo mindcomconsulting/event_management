@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
     puts"2222222222222222222222222222222222222"
     puts params
     puts"2222222222222222222222222222222222222"
-    @user=User.new(:email=>params[:user][:email],:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation],:user_name=>params[:user][:user_name],:first_name=>params[:user][:first_name],:middle_name=>params[:user][:middle_name],:last_name=>params[:user][:last_name],:mobile_no=>params[:user][:mobile_no],:address=>params[:user][:address])
+    @user=User.new(:email=>params[:user][:email],:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation],:user_name=>params[:user][:user_name],:first_name=>params[:user][:first_name],:middle_name=>params[:user][:middle_name],:last_name=>params[:user][:last_name],:mobile_no=>params[:user][:mobile_no],:address=>params[:user][:address],:user_type=>params[:user][:user_type])
     if @user.save
     redirect_to :controller=>'sessions', :action=>'new'
     else
@@ -48,6 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user.last_name=params[:user][:last_name]
     @user.mobile_no=params[:user][:mobile_no]
     @user.address=params[:user][:address]
+    @user.user_type=params[:user][:user_type]
     @user.save
     if params[:user][:password].present?
       @user.update(:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation])
