@@ -1,6 +1,7 @@
 # app/controllers/registrations_controller.rb
 class RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
+  #layout "admin_layout"
   
   def index
   end
@@ -8,6 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     super
     puts"1111111111111111i inside new on reg controller 111111111111111111111"
+
   end
 
   def edit

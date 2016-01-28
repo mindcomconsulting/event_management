@@ -1,10 +1,10 @@
 <%= render :partial => 'events/event_left_menu' %>
 
-<div class="div-margin">
+<!-- <div class="div-margin"> -->
 	<button class="submit add-function">Add Function</button><br/><br/>
 
 	<%if @function.length>0%>
-		<table class="table-bordered table-layout">
+		<table class="event-table">
 			<tr>
 				<th><%="Name"%></th>
 				<th><%="Description"%></th>
@@ -20,22 +20,32 @@
 		    	</td>
 		    	<td></td>
 		    </tr>
-		    <tr>
-		    	<td></td>
-		  	</tr>
+		    
 		  <%end%>
 	  </table>
 	<%else%>
 	 	<%="No Function Created"%>
 	<%end%>
-</div>
+<!-- </div> -->
 
 <div id="functionID"></div>
 
 <!-- <a class="edit-student-admission mg-icon-btn" title="Edit" href="/mg_student_admissions/1/edit">
 
  -->
+<style type="text/css">
+	#right-body-content{
+	float: left;
+	width: 70%;
+}
 
+
+
+
+
+
+
+</style>
 
 <script>
 

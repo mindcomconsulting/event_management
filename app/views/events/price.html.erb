@@ -1,10 +1,7 @@
 <%= render :partial => 'events/event_left_menu' %>
-
-<div class="div-margin">
 	<button class="submit add-price">Add Price</button><br/><br/>
-
 	<%if @price.length>0%>
-		<table class="table-bordered table-layout">
+		<table class="event-table">
 			<tr>
 				<th><%="Function"%></th>
 				<th><%="Price"%></th>
@@ -25,15 +22,12 @@
 		    	</td>
 		    	<td></td>
 		    </tr>
-		    <tr>
-		    	<td></td>
-		  	</tr>
+		    
 		  <%end%>
 	  </table>
 	<%else%>
 	 	<%="No Price Created"%>
 	<%end%>
-</div>
 
 <div id="priceDIVID"></div>
 
