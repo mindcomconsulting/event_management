@@ -1,0 +1,57 @@
+<%= render :partial => 'events/event_left_menu' %><br/>
+  <%= link_to "Add Event", {:controller=>'events',:action=>'add_event'}, :class => "submit cancel-btn" %><br/><br/>
+	<%if @event_detail.length>0%>
+		<table class="event-table">
+			<tr>
+				<th><%="Name"%></th>
+				<th><%="Address"%></th>
+				<th><%="Actions"%></th>
+			</tr>
+			<%@event_detail.each do |f|%>
+				<%image=Image.where(:imageable_id=>f.id)%>
+
+		  	<tr>
+		    	<td>
+		    		<%= f.try(:name) %>
+		    	</td>
+		     	<td>
+		    		<%= f.try(:address) %>
+		    	</td>
+		    	<td>
+						<%#= image_tag(image[0].try(:image_url), :width => 600) %>
+
+		    	</td>
+		    </tr>
+		    
+		  <%end%>
+	  </table>
+	<%else%>
+	 	<%="No Venue Created"%>
+	<%end%>
+
+
+
+<script>
+
+	// $(document).on("click",".add-venue",function(){
+	//   var urlLink = "/events/add_venue";
+	//   $.ajax({
+	//     url: urlLink,
+	//     cache: false,
+	//     success: function(data){
+	//       $("#venueDIVID").dialog({
+	//         modal: true,
+	//         title: "Add Function",
+	//         minHeight: "auto",
+	//         minWidth: "auto",
+	//         open: function(){
+	//           $(this).html(data);
+	//         }
+	//       });
+	//     }
+	//   });
+ //  });
+ 
+</script>
+
+	              

@@ -1,0 +1,54 @@
+<%= render :partial => 'events/event_left_menu' %>
+	<button class="submit add-venue">Add Venue</button><br/><br/>
+	<%if @venue.length>0%>
+		<table class="event-table">
+			<tr>
+				<th><%="Name"%></th>
+				<th><%="Address"%></th>
+				<th><%="Actions"%></th>
+			</tr>
+			<%@venue.each do |f|%>
+		  	<tr>
+		    	<td>
+		    		<%= f.try(:name) %>
+		    	</td>
+		     	<td>
+		    		<%= f.try(:address) %>
+		    	</td>
+		    	<td></td>
+		    </tr>
+		    
+		  <%end%>
+	  </table>
+	<%else%>
+	 	<%="No Venue Created"%>
+	<%end%>
+
+<div id="venueDIVID"></div>
+
+
+
+<script>
+
+	$(document).on("click",".add-venue",function(){
+	  var urlLink = "/events/add_venue";
+	  $.ajax({
+	    url: urlLink,
+	    cache: false,
+	    success: function(data){
+	      $("#venueDIVID").dialog({
+	        modal: true,
+	        title: "Add Function",
+	        minHeight: "auto",
+	        minWidth: "auto",
+	        open: function(){
+	          $(this).html(data);
+	        }
+	      });
+	    }
+	  });
+  });
+ 
+</script>
+
+	              

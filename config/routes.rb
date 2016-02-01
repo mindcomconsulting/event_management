@@ -11,14 +11,24 @@ Rails.application.routes.draw do
   get "/welcomes/user" => "welcomes#user", :as => "user"
   #get "/users/home" => "sessions#home", :as => "home"
   get "/welcomes/home" => "welcomes#home", :as => "home"
+
+
+
+
   
+  post "/events/create_event" => "events#create_event", :as => "create_event"
+  get "/events/add_event" => "events#add_event", :as => "add_event"
+  get "/events/event_detail" => "events#event_detail", :as => "event_detail"
+  get "/events/add_venue" => "events#add_venue", :as => "add_venue"
+  post "/events/create_venue" => "events#create_venue", :as => "create_venue"
+  get "/events/venue" => "events#venue", :as => "venue"
   post "/events/create_price" => "events#create_price", :as => "create_price"
   get "/events/add_price" => "events#add_price", :as => "add_price"
   get "/events/price" => "events#price", :as => "price"
   post "/events/create_function" => "events#create_function", :as => "create_function"
   get "/events/function" => "events#function", :as => "function"
   get "/events/venue_detail" => "events#venue_detail", :as => "venue_detail"
-  resources :events
+  resources :events, :only=>[:index,:new]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,91 @@
+<%= render :partial => 'events/event_left_menu' %><br/>
+<%= form_for :event_detail, :url=>{:controller=>'events',:action=>'create_event' }, :html => {:multipart => true} do |f| %>
+  <table>
+    <tr>
+      <td>
+        <%="Select Venue" %>
+        <%= f.select :venu_id,options_for_select(@venue),:prompt=>"Select",:onchange=>"" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%="Venue Address" %>
+        <%= f.text_area :venue_address%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%="Phone No." %>
+        <%= f.text_field :phone_number%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%="Mobile No." %>
+        <%= f.text_area :venue_address%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%="Capacity" %>
+        <%= f.text_field :capacity%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%="Amount/Per Person" %>
+        <%= f.text_field :price%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%="Upload Venue Image" %>
+      </td>
+    </tr>
+    
+       <tr>
+        <td>
+          <div id="cloneDIVID">
+          <%= f.file_field :image,:class=>"file-field-cls" %>
+          <%= "Title" %>
+          <%= f.text_field :title,:class=>"text-field-cls" %>
+        </div>
+
+        </td>
+      </tr>
+    <tr>
+      <td>
+        <br/><a class="submit add_images_cls">Add More Image</a>
+      </td>
+    </tr>
+
+    <tr>
+    	<td>
+    		<div class="mg-div-cls">
+    			<%= f.submit 'Submit', :class => 'submit' %>
+    			<%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn" %>
+    		</div>
+    	</td>
+  	</tr>
+  </table>
+<% end %>
+ 
+
+<script type="text/javascript">
+  $(".add_images_cls").on("click",function(){
+    var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
+    clone.find(".file-field-cls").val('');
+    clone.find(".text-field-cls").val('');
+
+    clone.insertAfter("div#cloneDIVID:last");
+    alert("sa");
+
+  });
+</script>
+
+<style type="text/css">
+  .text-field-cls{
+    margin-top: 7px;
+    width: 119px;
+  }
+</style>
