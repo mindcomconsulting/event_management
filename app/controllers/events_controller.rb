@@ -80,9 +80,13 @@ class EventsController < ApplicationController
 	def add_event
 		add_event=EventDetail.new
 		@venue = Venue.all.pluck(:name,:id)
+		@function = FunctionDetail.all.pluck(:name,:id)
 	end
 	def create_event
+		puts"000000000000000000000000000000000000000000"
 		puts params
+		puts"000000000000000000000000000000000000000000"
+		puts lklasf
 		add_event=EventDetail.new(:venu_id=>params[:event_detail][:venue_id])
 		if add_event.save
 			@event = EventDetail.find(add_event.id)
