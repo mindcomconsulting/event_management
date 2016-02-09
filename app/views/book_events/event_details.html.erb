@@ -1,6 +1,5 @@
-<%= render :partial => 'events/event_left_menu' %><br/>
   <%= link_to "Add Event", {:controller=>'events',:action=>'add_event'}, :class => "submit cancel-btn" %><br/><br/>
-	<%if @event_detail.length>0%>
+	<%if @event.length>0%>
 		<table class="event-table">
 			<tr>
 				<th><%="Venue"%></th>
@@ -11,7 +10,7 @@
 				<th><%="Price/Per-Persion"%></th>
 				<th><%="Actions"%></th>
 			</tr>
-			<%@event_detail.each do |f|%>
+			<%@event.each do |f|%>
 				<%venue=Venue.find_by(:id=>f.venu_id)%>
 				<%function=FunctionDetail.find_by(:id=>f.function_id)%>
 

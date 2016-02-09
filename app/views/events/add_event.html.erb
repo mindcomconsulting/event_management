@@ -6,14 +6,14 @@
       <td>
         <%="Select Venue"%>
       </td><td>
-        <%= f.select :venue_id, options_for_select(@venue),{:prompt=>"Select"}, {required: 'true',  class: 'text-width-cls'} %>
+        <%= f.select :venue_id, options_for_select(@venue),{:prompt=>"Select"}, {:onchange=>"venueAddress(this.value)",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
       <td>
         <%="Venue Address" %>
       </td><td>
-        <%= f.text_area :venue_address,:class=>"text-field-cls" %>
+        <%= f.text_area :venue_address,:class=>"text-field-cls",:readonly=>true %>
       </td>
     </tr>
     <tr>
@@ -41,14 +41,14 @@
       <td>
         <%="Prefered For" %>
       </td><td>
-        <%= f.select :venue_id, options_for_select(@function),{:prompt=>"Select"}, {required: 'true',  class: 'text-width-cls'} %>
+        <%= f.select :function_id, options_for_select(@function),{:prompt=>"Select"}, {:onchange=>"functionID(this.value)",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
       <td>
         <%="Amount/Per Person" %>
         </td><td>
-        <%= f.text_field :price,:class=>"text-width-cls" %>
+        <%= f.text_field :price,:class=>"text-width-cls",:readonly=>true %>
       </td>
     </tr>
     <tr>
@@ -101,8 +101,45 @@
     clone.find(".title-width-cls").val('');
 
     clone.insertAfter("div#cloneDIVID:last");
-
   });
+ 
+  function venueAddress(venue_Id){
+    if(venue_Id !=''){
+      var urlLink = "/events/venue_address";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"venue_id":venue_Id,"function":"by_venue"},
+        success: function(data){
+          var address =data["venue_address"] 
+          //console.log(address);
+          $("#event_detail_venue_address").val(address);
+        }
+      });
+    }else{
+      $("#event_detail_venue_address").val('');
+    }
+  }
+
+  function functionID(id){
+   if(id !=''){
+      var urlLink = "/events/venue_address";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"function_id":id,"function":"by_function"},
+        success: function(data){
+          var address =data["venue_address"] 
+          //console.log(address);
+          $("#event_detail_price").val(address);
+        }
+      });
+    }else{
+      $("#event_detail_price").val('');
+    }
+  }
+ 
+  
 </script>
 
 <style type="text/css">

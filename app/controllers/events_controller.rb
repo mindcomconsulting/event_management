@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   layout "admin_layout"
+  #layout "customer_layout"
 
 	def index
 	end
@@ -83,19 +84,38 @@ class EventsController < ApplicationController
 		@function = FunctionDetail.all.pluck(:name,:id)
 	end
 	def create_event
-		puts"000000000000000000000000000000000000000000"
-		puts params
-		puts"000000000000000000000000000000000000000000"
-		puts lklasf
-		add_event=EventDetail.new(:venu_id=>params[:event_detail][:venue_id])
+		
+		add_event=EventDetail.new(:venu_id=>params[:event_detail][:venue_id],:phone_number=>params[:event_detail][:phone_number],
+			:mobile_number=>params[:event_detail][:mobile_number],:capacity=>params[:event_detail][:capacity],
+			:function_id=>params[:event_detail][:function_id],:price_id=>params[:event_detail][:price])
 		if add_event.save
 			@event = EventDetail.find(add_event.id)
-			@image = @event.images.create(:image=>params[:event_detail][:image])
+			@image = add_event.images.new(:image=>params[:event_detail][:image],:title=>params[:event_detail][:title])
+    end
+  	if @image.save
+			flash[:notice]="Successfully Created"
+		else
+			flash[:error]="There is some problem"
+		end
 
 		 #add_event.images(params[:event_detail][:image])
 		 #add_event.save
-	  end
 		redirect_to :controller=>'events',:action=>'event_detail'
+	end
+
+	def venue_address
+		if params[:function]=="by_venue"
+			venue_address = Venue.find_by(:id=>params[:venue_id])
+			@venue_address = venue_address[:address]
+		else
+			price = Price.find_by(:id=>params[:function_id])
+			@venue_address = price[:price]
+			puts"000000000000000000000000000000000000000000"
+			puts @venue_address
+			puts"000000000000000000000000000000000000000000"
+
+		end
+		render :json=>{:venue_address=>@venue_address}
 	end
 
 	private

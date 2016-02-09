@@ -1,0 +1,244 @@
+<div id="divScrollID">
+  <h2>Book Event</h2>
+<%= form_for :book_event, :url=>{:controller=>'book_events',:action=>'create_events' }, :html => {:multipart => true} do |f| %>
+  <table>
+    <tr>
+      <td>
+        <%="Booking Id"%>
+      </td><td>
+        <%= f.text_field :booking_id,:class=>"text-field-cls" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Event Type" %>
+      </td><td>
+      <br/><%= f.select :function_id, options_for_select(@event_list),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Price/Per-Person" %>
+      </td><td>
+        <br/><%= f.text_field :booking_id,:class=>"text-field-cls",:readonly=>true %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Event Venue" %>
+      </td><td>
+      <br/><%= f.select :venue_id, options_for_select(@event_venue),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+     <tr>
+      <td>
+        <br/><%="Address" %>
+      </td><td>
+        <br/><%= f.text_area :booking_id,:class=>"text-field-cls",:readonly=>true %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="No of Guest" %>
+      </td><td>
+        <br/><%= f.text_field :no_of_guest,:class=>"text-width-cls" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Amount" %>
+      </td><td>
+        <br/><%= f.text_field :amount,:class=>"text-width-cls",:readonly=>true %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Date" %>
+      </td><td>
+        <br/><%= f.text_field :date,:class=>"text-width-cls" %>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Equipment" %>
+      </td><td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.check_box :dj, {:class => ""}, "unchecked-value" %>
+      <%="DJ"%>
+      </td>
+      <td>
+        <%= f.check_box :stage, {:class => ""}, "unchecked-value" %>
+      <%="Stage"%>
+      </td>
+      <td>
+        <%= f.check_box :mike_speaker, {:class => ""}, "unchecked-value" %>
+      <%="Mike and Speaker"%>
+      </td>
+    </tr>
+     <tr>
+      <td>
+        <br/><%="Food" %>
+      </td><td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.check_box :break_fast, {:class => ""}, "unchecked-value" %>
+      <%="Break Fast"%>&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        <%= f.check_box :lunch, {:class => ""}, "unchecked-value" %>
+      <%="Lunch"%>
+      </td>
+      <td>
+        <%= f.check_box :tea_snacks, {:class => ""}, "unchecked-value" %>
+      <%="Tea and Snack"%>
+      </td>
+      <td>
+        <%= f.check_box :dinner, {:class => ""}, "unchecked-value" %>
+      <%="Dinner"%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.radio_button :veg, false, :checked => false %>
+      <%="Only Veg"%>&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        <%= f.radio_button :non_veg, false, :checked => false %>
+      <%="Only Non Veg"%>
+      </td>
+      <td>
+        <%= f.radio_button :veg_nonveg, false, :checked => false %>
+      <%="Veg and Non Veg"%>
+      </td>
+      <td>
+        <%= f.check_box :dinner, {:class => ""}, "unchecked-value" %>
+      <%="Dinner"%>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <br/><br/><%="Lunch Type" %>
+      </td><td>
+      <br/><br/><%= f.select :lunch_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Dinner Type" %>
+      </td><td>
+      <br/><%= f.select :dinner_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+
+     <tr>
+      <td>
+        <br/><%="Decoration" %>
+      </td><td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Lighting" %>
+      </td><td>
+      <br/><%= f.select :lighting, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Flower" %>
+      </td><td>
+      <br/><%= f.select :flower, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Seating" %>
+      </td><td>
+      <br/><%= f.select :seating, options_for_select([["Chair","chair"],["Chair and Sofa","chair_sofa"],["Sofa","sofa"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <br/><%="Total" %>
+      </td><td>
+        <br/><%= f.text_field :total_amount,:class=>"text-field-cls" %>
+      </td>
+    </tr>
+
+    <tr>
+    	<td>
+    		<div class="">
+    			<br/><br/><%= f.submit 'Submit', :class => 'submit' %>
+    			<%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
+    		</div>
+    	</td>
+  	</tr>
+  </table>
+<% end %>
+ 
+</div>
+<script type="text/javascript">
+  // $(".add_images_cls").on("click",function(){
+  //   var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
+  //   clone.find(".file-field-cls").val('');
+  //   clone.find(".title-width-cls").val('');
+
+  //   clone.insertAfter("div#cloneDIVID:last");
+  // });
+ 
+  // function venueAddress(venue_Id){
+  //   if(venue_Id !=''){
+  //     var urlLink = "/events/venue_address";
+  //     $.ajax({
+  //       url: urlLink,
+  //       cache: false,
+  //       data: {"venue_id":venue_Id,"function":"by_venue"},
+  //       success: function(data){
+  //         var address =data["venue_address"] 
+  //         //console.log(address);
+  //         $("#event_detail_venue_address").val(address);
+  //       }
+  //     });
+  //   }else{
+  //     $("#event_detail_venue_address").val('');
+  //   }
+  // }
+
+  // function functionID(id){
+  //  if(id !=''){
+  //     var urlLink = "/events/venue_address";
+  //     $.ajax({
+  //       url: urlLink,
+  //       cache: false,
+  //       data: {"function_id":id,"function":"by_function"},
+  //       success: function(data){
+  //         var address =data["venue_address"] 
+  //         //console.log(address);
+  //         $("#event_detail_price").val(address);
+  //       }
+  //     });
+  //   }else{
+  //     $("#event_detail_price").val('');
+  //   }
+  // }
+ 
+  
+</script>
+
+<style type="text/css">
+  .scroll-cls{
+    max-height: 140px;
+    overflow: auto;
+    max-width: 218px;
+  }
+
+  #divScrollID{
+    max-height: 470px;
+    overflow: auto;
+  }
+</style>

@@ -15,7 +15,13 @@ Rails.application.routes.draw do
 
 
 
-  
+  get "/book_events/create_events" => "book_events#create_events", :as => "create_events"
+  get "/book_events/new_event" => "book_events#new_event", :as => "new_event"
+  get "/book_events/event_details" => "book_events#event_details", :as => "event_details"
+  resources :book_events, :only=>[:index,:new]
+
+
+  get "/events/venue_address" => "events#venue_address", :as => "venue_address"
   post "/events/create_event" => "events#create_event", :as => "create_event"
   get "/events/add_event" => "events#add_event", :as => "add_event"
   get "/events/event_detail" => "events#event_detail", :as => "event_detail"
