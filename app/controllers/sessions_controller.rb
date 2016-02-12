@@ -9,6 +9,9 @@ class SessionsController < Devise::SessionsController
 	end
 
 	def create
+		puts"inside session crateeeeeeeeeeeeeeeeeeeeeeee"
+		puts params
+		puts"inside session crateeeeeeeeeeeeeeeeeeeeeeee"
 	  self.resource = warden.authenticate!(auth_options)
 	    set_flash_message(:notice, :signed_in) if is_navigational_format?
 	    sign_in(resource_name, resource)

@@ -1,6 +1,10 @@
 <%= render :partial => 'welcomes/home' %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%=f.hidden_field :user_login_type, :value => params[:id]%>
     <table class="form-cls">
+      <%=puts"indiside sessionnnnnnnnnnnnnnnnnnnnn"%>
+      <%=puts params[:id]%>
+      <%=puts"indiside sessionnnnnnnnnnnnnnnnnnnnn"%>
       <tr>
         <td>
           <%= f.label :email %>
