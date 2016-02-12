@@ -16,25 +16,26 @@
     <nav>
       <table>
         <tr>
-          <td class="layout-space">
-            <a href="/events">My Profile</a>
+          <td class="cust-layout-space">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/events">My Profile</a>
           <td>
             <%= link_to 'Update profile', edit_user_registration_path, :class => 'navbar-link' %>
           </td>
-          <td class="layout-space">
-            <a href="/events/venue">Book an Event</a>
+          <td class="cust-layout-space">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="book_events/new_event">Book an Event</a>
           </td>
-          <td class="layout-space">
-            <a href="#">Booking Status</a>
+          <td class="cust-layout-space">
+            &nbsp;&nbsp;&nbsp;<a href="/book_events/booking_status">Booking Status</a>
           </td>
-          <td class="layout-space">
-            <a href="#">Booking History</a>
+          <td class="cust-layout-space">
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="/book_events/booking_history">Booking History</a>
           </td>
-          <td class="layout-space">
-            <a href="#">View Venue</a>
+          <td class="cust-layout-space">
+            &nbsp;&nbsp;&nbsp;<a href="#">View Venue</a>
           </td>
-          <td class="layout-space">
-            <a href="#">Feedback</a>
+          <td class="cust-layout-space">
+            &nbsp;&nbsp;&nbsp;<a href="#">Feedback</a>
           </td>
           <td>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>

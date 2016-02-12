@@ -1,0 +1,234 @@
+<h2>New Bookin</h2>
+<%if @new_booking.size>0%>
+	<div id="divScrollIDTable">
+  <% @new_booking.each do |f| %>
+  <%function = FunctionDetail.find_by(:id=>f.function_id)%>
+  <%venue = Venue.find_by(:id=>f.venue_id)%>
+  <%equpment = FunctionEquipment.find_by(:book_event_id=>f.id)%>
+		<table class="event-table">
+			<tr>
+				<th><%="Booking ID"%></th>
+				<th><%="Function"%></th>
+				<th><%="Venue"%></th>
+				<th><%="Address"%></th>
+				<th><%="No Of Guest"%></th>
+				<th><%="Date"%></th>
+				<th><%="Total Amount"%></th>
+
+				<th><%="Dj"%></th>
+				<th><%="Stage"%></th>
+				<th><%="Mike and Speaker"%></th>
+				<th><%="Break Fast"%></th>
+				<th><%="Lunch"%></th>
+				<th><%="Lunch Type"%></th>
+				<th><%="Tea and Snack"%></th>
+				<th><%="Dinner"%></th>
+				<th><%="Dinner Type"%></th>
+				<th><%="Food Type"%></th>
+				<th><%="Light"%></th>
+				<th><%="Flower"%></th>
+				<th><%="Sitting"%></th>
+				<th><%="Status"%></th>
+			</tr>
+			<tr>
+				<td>
+					<%=f.try(:booking_id)%>
+				</td>
+				<td>
+					<%=function.try(:name)%>
+				</td>
+				<td>
+					<%=venue.try(:name)%>
+				</td>
+				<td>
+					<%=venue.try(:address)%>
+				</td>
+				<td>
+					<%=f.try(:no_of_guest)%>
+				</td>
+				<td>
+					<%=f.try(:date)%>
+				</td>
+				<td>
+					<%=f.try(:total_amount)%>
+				</td>
+				<td>
+					<%if equpment.dj==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.stage==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.mike_speaker==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.break_fast==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.lunch==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%=equpment.try(:lunch_type)%>
+				</td>
+				<td>
+					<%if equpment.tea_snack==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.dinner==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%=equpment.try(:dinner_type)%>
+				</td>
+				<td>
+					<%if equpment.food_type=="veg"%>
+						<%="Veg"%>
+					<%elsif equpment.food_type=="nonveg"%>
+						<%="Nonveg"%>
+					<%else%>
+						<%="Veg and Nonveg"%>
+					<%end%>
+				</td>
+				<td>
+					<%=equpment.try(:light_type)%>
+				</td>
+				<td>
+					<%=equpment.try(:flower_type)%>
+				</td>
+				<td>
+					<%=equpment.try(:sitting_chair_type)%>
+				</td>
+				<td>
+					<%=f.try(:status)%>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<%end%>
+	<p>
+    <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%="Booking Id"%>&nbsp;&nbsp;
+    <%=text_field_tag :booking_id%>
+  </p>
+  <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="submit booking-status"><%="Search"%></a>
+  </p>
+  <div id="newbookinStatusID" style="display:none;">
+    <p>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <%="Status" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <%=text_field_tag :status,nil,:readonly=>true %>
+    </p>
+    <p>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    	<%="Change"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= select_tag :booking_status, options_for_select([["Pending","pending"],["Accepted","accepted"],["Rejected","rejected"]]),{:prompt=>"Select"}%>
+    </p><p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="submit new-booking-status"><%="submit"%></a>
+    </p>
+  </div>
+  
+
+
+
+
+
+
+
+<%else%>
+	<%="No Event Created Please Create Event"%>
+<%end%>
+
+
+<script>
+
+  $(document).on("click",".booking-status",function(){
+    var booking_id = $("#booking_id").val();
+    
+    if(booking_id != ""){
+      var urlLink = "/book_events/booking_status";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"booking_id":booking_id,"booking_status":"by_admin"},
+        success: function(data){
+          console.log(data);
+          if(data!=''){
+            $("#newbookinStatusID").show();
+            $("#status").val(data);
+          }
+          //$("#book_event_price").val(data[0]);
+        }
+      });
+    }else{
+      alert("Please Enter Booking Id");
+    }
+  });
+
+  $(document).on("click",".new-booking-status",function(){
+    var booking_id = $("#booking_id").val();
+    var booking_status = $("#booking_status").val();
+    if(booking_id != ""){
+      var urlLink = "/events/update_booking/";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"booking_id":booking_id,"booking_status":booking_status},
+        success: function(data){
+          console.log(data);
+        window.location="/events/new_booking/";
+          //$("#book_event_price").val(data[0]);
+        }
+      });
+    }else{
+      alert("Please Enter Booking Id");
+    }
+  });
+
+
+  </script>
+
+
+<style type="text/css">
+  .scroll-cls{
+    max-height: 140px;
+    overflow: auto;
+    max-width: 218px;
+  }
+
+  #divScrollIDTable{
+    max-height: 470px;
+    max-width: 630px;
+    overflow: auto;
+  }
+</style>

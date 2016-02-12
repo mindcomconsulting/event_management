@@ -13,14 +13,18 @@ Rails.application.routes.draw do
   get "/welcomes/home" => "welcomes#home", :as => "home"
 
 
-
-
-  get "/book_events/create_events" => "book_events#create_events", :as => "create_events"
+  get "/book_events/booking_history" => "book_events#booking_history", :as => "booking_history"
+  get "/book_events/booking_status" => "book_events#booking_status", :as => "booking_status"
+  get "/book_events/function_price" => "book_events#function_price", :as => "function_price"
+  post "/book_events/create_events" => "book_events#create_events", :as => "create_events"
   get "/book_events/new_event" => "book_events#new_event", :as => "new_event"
   get "/book_events/event_details" => "book_events#event_details", :as => "event_details"
   resources :book_events, :only=>[:index,:new]
 
 
+  get "/events/view_booking" => "events#view_booking", :as => "view_booking"
+  get "/events/update_booking" => "events#update_booking", :as => "update_booking"
+  get "/events/new_booking" => "events#new_booking", :as => "new_booking"
   get "/events/venue_address" => "events#venue_address", :as => "venue_address"
   post "/events/create_event" => "events#create_event", :as => "create_event"
   get "/events/add_event" => "events#add_event", :as => "add_event"

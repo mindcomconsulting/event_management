@@ -17,24 +17,24 @@
       <table>
         <tr>
           <td class="layout-space">
-            <a href="/events">My Profile</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/events">My Profile</a>
           <td>
             <%= link_to 'Update profile', edit_user_registration_path, :class => 'navbar-link' %>
           </td>
           <td class="layout-space">
-            <a href="/events/venue">About Venue</a>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/events/venue">About Venue</a>
           </td>
           <td class="layout-space">
-            <a href="#">New Booking</a>
+            &nbsp;&nbsp;&nbsp;<a href="/events/new_booking">New Booking</a>
           </td>
           <td class="layout-space">
-            <a href="#">View Booking</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="/events/view_booking">View Booking</a>
           </td>
           <td class="layout-space">
-            <a href="#">View Venue</a>
+            &nbsp;&nbsp;&nbsp;<a href="#">View Venue</a>
           </td>
           <td class="layout-space">
-            <a href="#">View Feedback</a>
+            &nbsp;&nbsp;&nbsp;<a href="#">View Feedback</a>
           </td>
           <td>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>

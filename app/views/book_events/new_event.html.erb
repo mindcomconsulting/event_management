@@ -1,6 +1,8 @@
 <div id="divScrollID">
   <h2>Book Event</h2>
 <%= form_for :book_event, :url=>{:controller=>'book_events',:action=>'create_events' }, :html => {:multipart => true} do |f| %>
+  <%=f.hidden_field :user_id, :value => current_user.id%>
+  <%=f.hidden_field :status, :value => "pending"%>
   <table>
     <tr>
       <td>
@@ -13,28 +15,28 @@
       <td>
         <br/><%="Event Type" %>
       </td><td>
-      <br/><%= f.select :function_id, options_for_select(@event_list),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      <br/><%= f.select :function_id, options_for_select(@event_list),{:prompt=>"Select"}, {:onchange=>"selectFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
       <td>
         <br/><%="Price/Per-Person" %>
       </td><td>
-        <br/><%= f.text_field :booking_id,:class=>"text-field-cls",:readonly=>true %>
+        <br/><%= f.text_field :price,:class=>"text-field-cls",:readonly=>true %>
       </td>
     </tr>
     <tr>
       <td>
         <br/><%="Event Venue" %>
       </td><td>
-      <br/><%= f.select :venue_id, options_for_select(@event_venue),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      <br/><%= f.select :venue_id, options_for_select(@event_venue),{:prompt=>"Select"}, {:onchange=>"venuFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
      <tr>
       <td>
         <br/><%="Address" %>
       </td><td>
-        <br/><%= f.text_area :booking_id,:class=>"text-field-cls",:readonly=>true %>
+        <br/><%= f.text_area :address,:class=>"text-field-cls",:readonly=>true %>
       </td>
     </tr>
     <tr>
@@ -65,15 +67,15 @@
     </tr>
     <tr>
       <td>
-        <%= f.check_box :dj, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :dj, {:class => ""}%>
       <%="DJ"%>
       </td>
       <td>
-        <%= f.check_box :stage, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :stage, {:class => ""} %>
       <%="Stage"%>
       </td>
       <td>
-        <%= f.check_box :mike_speaker, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :mike_speaker, {:class => ""} %>
       <%="Mike and Speaker"%>
       </td>
     </tr>
@@ -85,53 +87,48 @@
     </tr>
     <tr>
       <td>
-        <%= f.check_box :break_fast, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :break_fast, {:class => ""}%>
       <%="Break Fast"%>&nbsp;&nbsp;&nbsp;&nbsp;
       </td>
       <td>
-        <%= f.check_box :lunch, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :lunch, {:class => ""} %>
       <%="Lunch"%>
       </td>
       <td>
-        <%= f.check_box :tea_snacks, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :tea_snack, {:class => ""} %>
       <%="Tea and Snack"%>
       </td>
       <td>
-        <%= f.check_box :dinner, {:class => ""}, "unchecked-value" %>
+        <%= f.check_box :dinner, {:class => ""} %>
       <%="Dinner"%>
       </td>
     </tr>
     <tr>
       <td>
-        <%= f.radio_button :veg, false, :checked => false %>
+        <%= f.radio_button :food_type, 'veg'%>
       <%="Only Veg"%>&nbsp;&nbsp;&nbsp;&nbsp;
       </td>
       <td>
-        <%= f.radio_button :non_veg, false, :checked => false %>
+        <%= f.radio_button :food_type, 'nonveg'%>
       <%="Only Non Veg"%>
       </td>
       <td>
-        <%= f.radio_button :veg_nonveg, false, :checked => false %>
+        <%= f.radio_button :food_type, 'veg_nonveg'%>
       <%="Veg and Non Veg"%>
       </td>
-      <td>
-        <%= f.check_box :dinner, {:class => ""}, "unchecked-value" %>
-      <%="Dinner"%>
-      </td>
     </tr>
-
-    <tr>
+    <tr id="lunchTypeID" style="display: none;">
       <td>
         <br/><br/><%="Lunch Type" %>
-      </td><td>
-      <br/><br/><%= f.select :lunch_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+        </td><td>
+        <br/><br/><%= f.select :lunch_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",  class: 'text-width-cls'} %>
       </td>
-    </tr>
-    <tr>
+      </tr>
+    <tr id="dinnerTypeID" style="display: none;">
       <td>
         <br/><%="Dinner Type" %>
       </td><td>
-      <br/><%= f.select :dinner_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      <br/><%= f.select :dinner_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"", class: 'text-width-cls'} %>
       </td>
     </tr>
 
@@ -145,21 +142,21 @@
       <td>
         <br/><%="Lighting" %>
       </td><td>
-      <br/><%= f.select :lighting, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      <br/><%= f.select :light_type, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
       <td>
         <br/><%="Flower" %>
       </td><td>
-      <br/><%= f.select :flower, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      <br/><%= f.select :flower_type, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
       <td>
         <br/><%="Seating" %>
       </td><td>
-      <br/><%= f.select :seating, options_for_select([["Chair","chair"],["Chair and Sofa","chair_sofa"],["Sofa","sofa"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+      <br/><%= f.select :sitting_chair_type, options_for_select([["Chair","chair"],["Chair and Sofa","chair_sofa"],["Sofa","sofa"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
@@ -183,6 +180,91 @@
  
 </div>
 <script type="text/javascript">
+
+  function selectFunction(functionID){
+    var function_id = functionID;
+
+    if(function_id !=''){
+      var urlLink = "/book_events/function_price";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"function_id":function_id,"request_by":"function"},
+        success: function(data){
+          //console.log(data);
+          $("#book_event_price").val(data[0]);
+        }
+      });
+    }
+  }
+
+
+  function venuFunction(venue_id){
+
+    if(venue_id !=''){
+      var urlLink = "/book_events/function_price";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"venue_id":venue_id,"request_by":"venue"},
+        success: function(data){
+          //console.log(data);
+          $("#book_event_address").val(data[0]);
+        }
+      });
+    }
+  }
+
+  $(document).on("change","#book_event_no_of_guest",function(){
+    var function_price = $("#book_event_price").val();
+    var no_of_guest = $("#book_event_no_of_guest").val();
+    var total_amount = parseInt(function_price)*parseInt(no_of_guest);
+    $("#book_event_amount").val(total_amount);
+
+  });
+
+  // $(document).on("click","#book_event_veg_true",function(){
+  //   if ($("#book_event_veg_true").is(":checked")) {
+  //     //$("#book_event_non_veg_false").prop("checked")
+  //     $("#book_event_nonveg_true").prop('checked', false);
+  //     $("#book_event_veg_nonveg_true").prop('checked', false);
+  //   }
+  // });
+
+  // $(document).on("click","#book_event_nonveg_true",function(){
+  //   if ($("#book_event_nonveg_true").is(":checked")) {
+  //     //$("#book_event_non_veg_false").prop("checked")
+  //     $("#book_event_veg_true").prop('checked', false);
+  //     $("#book_event_veg_nonveg_true").prop('checked', false);
+  //   }
+  // });
+
+  // $(document).on("click","#book_event_veg_nonveg_true",function(){
+  //   if ($("#book_event_veg_nonveg_true").is(":checked")) {
+  //     //$("#book_event_non_veg_false").prop("checked")
+  //     $("#book_event_veg_true").prop('checked', false);
+  //     $("#book_event_nonveg_true").prop('checked', false);
+  //   }
+  // });
+
+  $(document).on("click","#book_event_lunch",function(){
+    if ($("#book_event_lunch").is(":checked")) {
+      $("#lunchTypeID").show();
+    }else{
+      $("#lunchTypeID").hide();
+    }
+  });
+
+  $(document).on("click","#book_event_dinner",function(){
+    if ($("#book_event_dinner").is(":checked")) {
+      $("#dinnerTypeID").show();
+    }else{
+      $("#dinnerTypeID").hide();
+    }
+  });
+
+
+
   // $(".add_images_cls").on("click",function(){
   //   var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
   //   clone.find(".file-field-cls").val('');

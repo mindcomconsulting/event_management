@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201172956) do
+ActiveRecord::Schema.define(version: 20160212120001) do
+
+  create_table "book_events", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "booking_id",   limit: 255
+    t.integer  "function_id",  limit: 4
+    t.integer  "venue_id",     limit: 4
+    t.integer  "no_of_guest",  limit: 4
+    t.date     "date"
+    t.integer  "total_amount", limit: 4
+    t.string   "status",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "event_details", force: :cascade do |t|
     t.integer  "venu_id",       limit: 4
@@ -30,6 +43,26 @@ ActiveRecord::Schema.define(version: 20160201172956) do
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "function_equipments", force: :cascade do |t|
+    t.integer  "user_id",            limit: 4
+    t.integer  "book_event_id",      limit: 4
+    t.boolean  "dj"
+    t.boolean  "stage"
+    t.boolean  "mike_speaker"
+    t.boolean  "break_fast"
+    t.boolean  "lunch"
+    t.boolean  "tea_snack"
+    t.boolean  "dinner"
+    t.string   "food_type",          limit: 255
+    t.string   "lunch_type",         limit: 255
+    t.string   "dinner_type",        limit: 255
+    t.string   "light_type",         limit: 255
+    t.string   "flower_type",        limit: 255
+    t.string   "sitting_chair_type", limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "images", force: :cascade do |t|

@@ -1,0 +1,153 @@
+<h2>Booking History</h2>
+<%if @booing_history.size>0%>
+	<div id="divScrollIDTable">
+  <% @booing_history.each do |f| %>
+  <%function = FunctionDetail.find_by(:id=>f.function_id)%>
+  <%venue = Venue.find_by(:id=>f.venue_id)%>
+  <%equpment = FunctionEquipment.find_by(:book_event_id=>f.id)%>
+		<table class="event-table">
+			<tr>
+				<th><%="Booking ID"%></th>
+				<th><%="Function"%></th>
+				<th><%="Venue"%></th>
+				<th><%="Address"%></th>
+				<th><%="No Of Guest"%></th>
+				<th><%="Date"%></th>
+				<th><%="Total Amount"%></th>
+
+				<th><%="Dj"%></th>
+				<th><%="Stage"%></th>
+				<th><%="Mike and Speaker"%></th>
+				<th><%="Break Fast"%></th>
+				<th><%="Lunch"%></th>
+				<th><%="Lunch Type"%></th>
+				<th><%="Tea and Snack"%></th>
+				<th><%="Dinner"%></th>
+				<th><%="Dinner Type"%></th>
+				<th><%="Food Type"%></th>
+				<th><%="Light"%></th>
+				<th><%="Flower"%></th>
+				<th><%="Sitting"%></th>
+				<th><%="Status"%></th>
+			</tr>
+			<tr>
+				<td>
+					<%=f.try(:booking_id)%>
+				</td>
+				<td>
+					<%=function.try(:name)%>
+				</td>
+				<td>
+					<%=venue.try(:name)%>
+				</td>
+				<td>
+					<%=venue.try(:address)%>
+				</td>
+				<td>
+					<%=f.try(:no_of_guest)%>
+				</td>
+				<td>
+					<%=f.try(:date)%>
+				</td>
+				<td>
+					<%=f.try(:total_amount)%>
+				</td>
+				<td>
+					<%if equpment.dj==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.stage==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.mike_speaker==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.break_fast==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.lunch==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%=equpment.try(:lunch_type)%>
+				</td>
+				<td>
+					<%if equpment.tea_snack==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%if equpment.dinner==true%>
+						<%="Yes"%>
+					<%else%>
+						<%="No"%>
+					<%end%>
+				</td>
+				<td>
+					<%=equpment.try(:dinner_type)%>
+				</td>
+				<td>
+					<%if equpment.food_type=="veg"%>
+						<%="Veg"%>
+					<%elsif equpment.food_type=="nonveg"%>
+						<%="Nonveg"%>
+					<%else%>
+						<%="Veg and Nonveg"%>
+					<%end%>
+				</td>
+				<td>
+					<%=equpment.try(:light_type)%>
+				</td>
+				<td>
+					<%=equpment.try(:flower_type)%>
+				</td>
+				<td>
+					<%=equpment.try(:sitting_chair_type)%>
+				</td>
+				<td>
+					<%=f.try(:status)%>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<%end%>
+<%else%>
+	<%="No Event Created Please Create Event"%>
+<%end%>
+
+
+
+<style type="text/css">
+  .scroll-cls{
+    max-height: 140px;
+    overflow: auto;
+    max-width: 218px;
+  }
+
+  #divScrollIDTable{
+    max-height: 470px;
+    max-width: 630px;
+    overflow: auto;
+  }
+</style>

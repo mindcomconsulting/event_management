@@ -110,12 +110,23 @@ class EventsController < ApplicationController
 		else
 			price = Price.find_by(:id=>params[:function_id])
 			@venue_address = price[:price]
-			puts"000000000000000000000000000000000000000000"
-			puts @venue_address
-			puts"000000000000000000000000000000000000000000"
-
 		end
 		render :json=>{:venue_address=>@venue_address}
+	end
+
+	def new_booking
+    @new_booking = BookEvent.where(:status=>"pending")
+	end
+
+	def update_booking
+    @result = BookEvent.find_by(:booking_id=>params[:booking_id]).update(:status=>params[:booking_status])
+		respond_to do |format|
+      format.json { render :json => @result.to_json }
+    end
+	end
+
+	def view_booking
+    @booing_history = BookEvent.all
 	end
 
 	private

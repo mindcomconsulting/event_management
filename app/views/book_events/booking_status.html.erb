@@ -1,0 +1,49 @@
+<h2>Booking Status</h2>
+  <%=hidden_field_tag "user_id", current_user.id%>
+  <p>
+    <%="Booking Id"%>&nbsp;&nbsp;
+    <%=text_field_tag :booking_id%>
+  </p>
+  <div id="bookinStatusID" style="display:none;">
+    <p>
+     <%="Status" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <%=text_field_tag :status,nil,:readonly=>true %>
+    </p>
+  </div>
+  <p>
+  	<div class="">
+      <a class="submit booking-status"><%="Search"%></a>
+ 		</div>
+  </p>
+
+
+
+
+
+<script>
+
+  $(document).on("click",".booking-status",function(){
+    var booking_id = $("#booking_id").val();
+    var user_id = $("#user_id").val();
+    if(booking_id != ""){
+      var urlLink = "/book_events/booking_status";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"booking_id":booking_id,"user_id":user_id,"booking_status":"booking_status"},
+        success: function(data){
+          console.log(data);
+          if(data!=''){
+            $("#bookinStatusID").show();
+            $("#status").val(data);
+          }
+          //$("#book_event_price").val(data[0]);
+        }
+      });
+    }else{
+      alert("Please Enter Booing Id");
+    }
+  });
+
+
+  </script>
