@@ -41,14 +41,14 @@
       <td>
         <%="Prefered For" %>
       </td><td>
-        <%= f.select :function_id, options_for_select(@function),{:prompt=>"Select"}, {:onchange=>"functionID(this.value)",required: 'true',  class: 'text-width-cls'} %>
+        <%= f.select :function_id, options_for_select(@function),{:prompt=>"All"}, {:onchange=>"functionID(this.value)",  class: 'text-width-cls'} %>
       </td>
     </tr>
     <tr>
       <td>
         <%="Amount/Per Person" %>
         </td><td>
-        <%= f.text_field :price,:class=>"text-width-cls",:readonly=>true %>
+        <%= f.text_field :price,:class=>"text-width-cls"%>
       </td>
     </tr>
     <tr>
@@ -123,6 +123,7 @@
 
   function functionID(id){
    if(id !=''){
+      $('#event_detail_price').attr("disabled", "disabled"); 
       var urlLink = "/events/venue_address";
       $.ajax({
         url: urlLink,
@@ -135,6 +136,7 @@
         }
       });
     }else{
+      $('#event_detail_price').attr("disabled", false); 
       $("#event_detail_price").val('');
     }
   }

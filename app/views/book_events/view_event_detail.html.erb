@@ -1,0 +1,42 @@
+<br/><table>
+  <tr>
+    <td>
+      <%="Event Type" %>&nbsp;&nbsp;
+    </td><td>
+      <%= select_tag :function, options_for_select(@function),{:prompt=>"All",:onchange=>"",  class: 'text-width-cls'} %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <br/><%="Select Venue"%>&nbsp;&nbsp;
+    </td><td>
+      <br/><%= select_tag :venue, options_for_select(@venue),{:prompt=>"Select",:onchange=>"viewEventDetails(this.value)",required: 'true',  class: 'text-width-cls'}%>
+    </td>
+  </tr>
+</table><br/>
+<div id="viewEventDetailID"></div>
+
+
+<script>
+  function viewEventDetails(venue_Id){
+
+    var function_id = $("#function").val();
+    if(venue_Id !='' && function_id !=''){
+      var urlLink = "/book_events/event_image";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"venue_id":venue_Id,"function_id":function_id},
+        success: function(data){
+          console.log(data);
+          $("#viewEventDetailID").html(data);
+        }
+      });
+    }else{
+      $("#viewEventDetailID").empty();
+      alert("Please Select Event Type and Venue");
+    }
+  }
+  
+</script>
+

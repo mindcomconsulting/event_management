@@ -84,7 +84,6 @@ class EventsController < ApplicationController
 		@function = FunctionDetail.all.pluck(:name,:id)
 	end
 	def create_event
-		
 		add_event=EventDetail.new(:venu_id=>params[:event_detail][:venue_id],:phone_number=>params[:event_detail][:phone_number],
 			:mobile_number=>params[:event_detail][:mobile_number],:capacity=>params[:event_detail][:capacity],
 			:function_id=>params[:event_detail][:function_id],:price_id=>params[:event_detail][:price])
@@ -127,6 +126,16 @@ class EventsController < ApplicationController
 
 	def view_booking
     @booing_history = BookEvent.all
+	end
+
+	def view_event_detail
+		@function = FunctionDetail.all.pluck(:name,:id)
+    @venue = Venue.all.pluck(:name,:id)
+	end
+
+	def event_image
+		@event_detail = EventDetail.where(:function_id=>params[:function_id],:venu_id=>params[:venue_id])
+		render :layout=>false
 	end
 
 	private

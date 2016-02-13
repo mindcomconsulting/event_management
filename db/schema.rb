@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212220013) do
+ActiveRecord::Schema.define(version: 20160213181547) do
 
   create_table "book_events", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20160212220013) do
     t.string   "image",         limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.text     "feedback",   limit: 65535
+    t.date     "date"
+    t.string   "email",      limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "function_details", force: :cascade do |t|

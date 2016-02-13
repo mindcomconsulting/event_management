@@ -62,6 +62,16 @@ class BookEventsController < ApplicationController
     @booing_history = BookEvent.where(:user_id=>current_user.id)
   end
 
+  def view_event_detail
+		@function = FunctionDetail.all.pluck(:name,:id)
+	  @venue = Venue.all.pluck(:name,:id)
+	end
+
+	def event_image
+		@event_detail = EventDetail.where(:function_id=>params[:function_id],:venu_id=>params[:venue_id])
+		render :layout=>false
+	end
+
 
   private
   def event_params

@@ -1,0 +1,28 @@
+<!-- <p id="notice"><%#= notice %></p> -->
+
+<h1>Feedbacks</h1>
+<%if @feedbacks.length>0%>
+  <table class="event-table">
+    <thead>
+      <tr>
+        <th>Feedback</th>
+        <th>Date</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr>
+          <td><%= feedback.feedback %></td>
+          <td><%= feedback.date %></td>
+          <td><%= feedback.email %></td>
+          <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' },:class => 'submit' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%else%>
+  <%="No FeedBacks"%>
+<%end%>

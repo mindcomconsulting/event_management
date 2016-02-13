@@ -1,0 +1,36 @@
+<%= form_for(@feedback) do |f| %>
+  <%=f.hidden_field :user_id, :value => current_user.id%>
+  <%=f.hidden_field :date, :value =>  DateTime.now.to_date%>
+  <%=f.hidden_field :email, :value => current_user.email%>
+  <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+
+      <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- <div class="field">
+    <%#= f.label :user_id %><br>
+    <%#= f.number_field :user_id %>
+  </div> -->
+  <div class="field">
+    <%= f.label :feedback %><br>
+    <%= f.text_area :feedback %>
+  </div>
+  <!-- <div class="field">
+    <%#= f.label :date %><br>
+    <%#= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%#= f.label :email %><br>
+    <%#= f.text_field :email %>
+  </div> -->
+  <div class="actions">
+    <%= f.submit 'Submit', :class => 'submit' %>
+  </div>
+<% end %>

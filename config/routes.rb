@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :feedbacks
   #devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,7 +13,8 @@ Rails.application.routes.draw do
   #get "/users/home" => "sessions#home", :as => "home"
   get "/welcomes/home" => "welcomes#home", :as => "home"
 
-
+  get "/book_events/event_image" => "book_events#event_image"
+  get "/book_events/view_event_detail" => "book_events#view_event_detail"
   get "/book_events/booking_history" => "book_events#booking_history", :as => "booking_history"
   get "/book_events/booking_status" => "book_events#booking_status", :as => "booking_status"
   get "/book_events/function_price" => "book_events#function_price", :as => "function_price"
@@ -22,6 +24,8 @@ Rails.application.routes.draw do
   resources :book_events, :only=>[:index,:new]
 
 
+  get "/events/event_image" => "events#event_image", :as => "event_image"
+  get "/events/view_event_detail" => "events#view_event_detail", :as => "view_event_detail"
   get "/events/view_booking" => "events#view_booking", :as => "view_booking"
   get "/events/update_booking" => "events#update_booking", :as => "update_booking"
   get "/events/new_booking" => "events#new_booking", :as => "new_booking"

@@ -1,0 +1,80 @@
+<%if @event_detail.length>0%>
+	<table class="event-table">
+		<tr>
+			<th><%="Venue"%></th>
+			<th><%="Venue Address"%></th>
+			<th><%="Phone No."%></th>
+			<th><%="Mobile No."%></th>
+			<th><%="Capacity"%></th>
+			<th><%="Prefered For"%></th>
+			<th><%="Price/Per-Persion"%></th>
+		</tr>
+		<%@event_detail.each do |f|%>
+			<%venue=Venue.find_by(:id=>f.venu_id)%>
+			<%function=FunctionDetail.find_by(:id=>f.function_id)%>
+
+	  	<tr>
+	    	<td>
+	    		<%= venue.try(:name) %>
+	    	</td>
+	    	<td>
+	    		<%= venue.try(:address) %>
+	    	</td>
+	     	<td>
+	    		<%= f.try(:phone_number) %>
+	    	</td>
+	    	<td>
+	    		<%= f.try(:mobile_number) %>
+	    	</td>
+	    	<td>
+	    		<%= f.try(:capacity) %>
+	    	</td>
+	    	<td>
+	    		<%= function.try(:name) %>
+	    	</td>
+	    	<td>
+	    		<%= f.try(:price_id) %>
+	    	</td>
+	    </tr>
+	  <%end%>
+  </table>
+	<br/><br/>
+	<%@event_detail.each do |f|%>
+		<%image=Image.find_by(:imageable_id=>f.id)%>
+  	<tr>
+    	<td>
+    		<%= image_tag(image.image) %>
+    	</td>
+    </tr>
+  <%end%>
+  </table>
+<%else%>
+ 	<%="No Event Created For this Venue Please Select other Venue"%>
+<%end%>
+
+
+
+<script>
+
+	// $(document).on("click",".add-venue",function(){
+	//   var urlLink = "/events/add_venue";
+	//   $.ajax({
+	//     url: urlLink,
+	//     cache: false,
+	//     success: function(data){
+	//       $("#venueDIVID").dialog({
+	//         modal: true,
+	//         title: "Add Function",
+	//         minHeight: "auto",
+	//         minWidth: "auto",
+	//         open: function(){
+	//           $(this).html(data);
+	//         }
+	//       });
+	//     }
+	//   });
+ //  });
+ 
+</script>
+
+	              
