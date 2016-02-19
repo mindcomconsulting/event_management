@@ -1,10 +1,10 @@
 <%= render :partial => 'events/event_left_menu' %><br/>
 <div id="divScrollID">
-<%= form_for :event_detail, :url=>{:controller=>'events',:action=>'create_event' }, :html => {:multipart => true} do |f| %>
+<%= form_for :event_detail, :url=>{:controller=>'events',:action=>'create_event' }, :html => {:id => "createEventFromID",:multipart => true} do |f| %>
   <table>
     <tr>
       <td>
-        <%="Select Venue"%>
+        <%="Select Venue"%><span> *</span>
       </td><td>
         <%= f.select :venue_id, options_for_select(@venue),{:prompt=>"Select"}, {:onchange=>"venueAddress(this.value)",required: 'true',  class: 'text-width-cls'} %>
       </td>
@@ -25,14 +25,14 @@
     </tr>
     <tr>
       <td>
-        <%="Mobile No." %>
+        <%="Mobile No." %><span> *</span>
       </td><td>
         <%= f.text_field :mobile_number,:class=>"text-width-cls" %>
       </td>
     </tr>
     <tr>
       <td>
-        <%="Capacity" %>
+        <%="Capacity" %><span> *</span>
       </td><td>
         <%= f.text_field :capacity,:class=>"text-width-cls" %>
       </td>
@@ -46,14 +46,14 @@
     </tr>
     <tr>
       <td>
-        <%="Amount/Per Person" %>
+        <%="Amount/Per Person" %><span> *</span>
         </td><td>
         <%= f.text_field :price,:class=>"text-width-cls"%>
       </td>
     </tr>
     <tr>
       <td>
-        <h3><%="Upload Venue Image" %></h3>
+        <h3><%="Upload Venue Image" %></h3><span> *</span>
       </td>
     </tr>
     
@@ -67,7 +67,7 @@
                   <%= f.file_field :image,:class=>"file-field-cls text-field-cls" %>
                 </td>
               </tr><tr><td>
-                  <%= "Title" %>
+                  <%= "Title" %><span> *</span>
                   <%= f.text_field :title,:class=>"title-width-cls", :style=>"margin-bottom: 4px;" %>
                 </td>
               </tr>
@@ -94,7 +94,24 @@
 <% end %>
  
 </div>
-<script type="text/javascript">
+
+<script>
+
+  $(document).ready(function(){
+    $("#createEventFromID").validate({
+      debug: true,
+      rules: {
+        "event_detail[venue_id]": {required: true},
+        "event_detail[mobile_number]": {required: true,number: true},
+        "event_detail[capacity]": {required: true,number: true},
+        "event_detail[price]": {required: true,number: true},
+        "event_detail[image]": {required: true},
+        "event_detail[title]": {required: true}
+      }
+    });
+  });
+
+
   $(".add_images_cls").on("click",function(){
     var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
     clone.find(".file-field-cls").val('');

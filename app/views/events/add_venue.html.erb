@@ -1,4 +1,6 @@
-<%= form_for :venue_detail, :url=>{:controller=>'events',:action=>'create_venue' } do |f| %>
+<%#= form_for :venue_detail, :url=>{:controller=>'events',:action=>'create_venue' } do |f| %>
+<%= form_for :venue_detail, :url => {:controller=>'events',:action=>'create_venue' }, :html => {:id => "venueDetailsFromID"} do |f| %>
+
   <table>
     <tr>
     	<td>
@@ -8,7 +10,7 @@
     </tr>
     <tr>
       <td>
-        <%="Address" %>
+        <%="Address" %><br/>
         <%= f.text_area :address %>
       </td>
     </tr>
@@ -25,3 +27,14 @@
  
 
 
+<script>
+
+  $(document).ready(function(){
+    $("#venueDetailsFromID").validate({
+      debug: true,
+      rules: {
+        "venue_detail[name]": {required: true}
+      }
+    });
+  });
+</script>

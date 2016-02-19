@@ -1,6 +1,6 @@
 <div id="divScrollID">
   <h2>Book Event</h2>
-<%= form_for :book_event, :url=>{:controller=>'book_events',:action=>'create_events' }, :html => {:multipart => true} do |f| %>
+<%= form_for :book_event, :url=>{:controller=>'book_events',:action=>'create_events' }, :html => {:id=>"bookEventFormID",:multipart => true} do |f| %>
   <%=f.hidden_field :user_id, :value => current_user.id%>
   <%=f.hidden_field :status, :value => "pending"%>
   <table>
@@ -179,8 +179,25 @@
 <% end %>
  
 </div>
-<script type="text/javascript">
 
+
+
+<script>
+
+  $(document).ready(function(){
+    $('#book_event_date').datepicker();
+
+    $("#bookEventFormID").validate({
+      debug: true,
+      rules: {
+        "book_event[booking_id]": {required: true},
+        "book_event[function_id]": {required: true},
+        "book_event[venue_id]": {required: true},
+        "book_event[date]": {required: true}
+      }
+    });
+  });
+  
   function selectFunction(functionID){
     var function_id = functionID;
 
@@ -223,29 +240,6 @@
 
   });
 
-  // $(document).on("click","#book_event_veg_true",function(){
-  //   if ($("#book_event_veg_true").is(":checked")) {
-  //     //$("#book_event_non_veg_false").prop("checked")
-  //     $("#book_event_nonveg_true").prop('checked', false);
-  //     $("#book_event_veg_nonveg_true").prop('checked', false);
-  //   }
-  // });
-
-  // $(document).on("click","#book_event_nonveg_true",function(){
-  //   if ($("#book_event_nonveg_true").is(":checked")) {
-  //     //$("#book_event_non_veg_false").prop("checked")
-  //     $("#book_event_veg_true").prop('checked', false);
-  //     $("#book_event_veg_nonveg_true").prop('checked', false);
-  //   }
-  // });
-
-  // $(document).on("click","#book_event_veg_nonveg_true",function(){
-  //   if ($("#book_event_veg_nonveg_true").is(":checked")) {
-  //     //$("#book_event_non_veg_false").prop("checked")
-  //     $("#book_event_veg_true").prop('checked', false);
-  //     $("#book_event_nonveg_true").prop('checked', false);
-  //   }
-  // });
 
   $(document).on("click","#book_event_lunch",function(){
     if ($("#book_event_lunch").is(":checked")) {
@@ -262,53 +256,6 @@
       $("#dinnerTypeID").hide();
     }
   });
-
-
-
-  // $(".add_images_cls").on("click",function(){
-  //   var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
-  //   clone.find(".file-field-cls").val('');
-  //   clone.find(".title-width-cls").val('');
-
-  //   clone.insertAfter("div#cloneDIVID:last");
-  // });
- 
-  // function venueAddress(venue_Id){
-  //   if(venue_Id !=''){
-  //     var urlLink = "/events/venue_address";
-  //     $.ajax({
-  //       url: urlLink,
-  //       cache: false,
-  //       data: {"venue_id":venue_Id,"function":"by_venue"},
-  //       success: function(data){
-  //         var address =data["venue_address"] 
-  //         //console.log(address);
-  //         $("#event_detail_venue_address").val(address);
-  //       }
-  //     });
-  //   }else{
-  //     $("#event_detail_venue_address").val('');
-  //   }
-  // }
-
-  // function functionID(id){
-  //  if(id !=''){
-  //     var urlLink = "/events/venue_address";
-  //     $.ajax({
-  //       url: urlLink,
-  //       cache: false,
-  //       data: {"function_id":id,"function":"by_function"},
-  //       success: function(data){
-  //         var address =data["venue_address"] 
-  //         //console.log(address);
-  //         $("#event_detail_price").val(address);
-  //       }
-  //     });
-  //   }else{
-  //     $("#event_detail_price").val('');
-  //   }
-  // }
- 
   
 </script>
 

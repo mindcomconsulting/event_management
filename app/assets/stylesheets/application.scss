@@ -10,7 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *= require jquery.ui.all
-
+ *= require bootstrap-datepicker
  *
  *= require_tree .
  *= require_self
@@ -250,4 +250,8 @@ div#containers{
   .title-width-cls{
     margin-top: 7px;
     width: 155px;
+  }
+
+  .error{
+    color:red;
   }

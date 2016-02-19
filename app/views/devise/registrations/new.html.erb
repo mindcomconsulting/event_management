@@ -2,7 +2,7 @@
 <div id="container-id">
   <h2>Customer Registration</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:id => "createProfileFromID"}) do |f| %>
     <%= devise_error_messages! %>
     <%=f.hidden_field :user_login_type,:value=>"user"%>
     <div class="field">
@@ -66,16 +66,20 @@
 </dive>
 
 <script>
-  // $(document).ready(function(){
-  
-  //   $("#new_user").validate({ 
-  //     rules: { 
-  //      "user[user_name]": {required: true }         
-  //     }, 
-  //     messages: {
-  //       "user[user_name]": {required: "Enter your username"}
-  //     }
-  //   });
-  // });
 
+  $(document).ready(function(){
+    $("#createProfileFromID").validate({
+      debug: true,
+      rules: {
+        "user[user_name]": {required: true},
+        "user[mobile_no]": {required: true,number: true},
+        "user[first_name]": {required: true},
+        "user[last_name]": {required: true},
+        "user[address]": {required: true},
+        "user[password]": {required: true, equalTo: "#user_password_confirmation"},
+        "user[password_confirmation]": {required: true},
+        "user[email]": {required: true, email: true}
+      }
+    });
+  });
 </script>

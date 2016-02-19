@@ -1,8 +1,8 @@
-  <%=render :partial=>'layouts/admin_layout'%>
+  <%#=render :partial=>'layouts/admin_layout'%>
   <div id="container-id">
   <h2>Update Profile <%#= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:id => "updateProfileFromID", method: :put }) do |f| %>
     <%= devise_error_messages! %>
     <%=f.hidden_field :id,:value=>current_user.id %>
     <%=f.hidden_field :user_login_type,:value=>"user"%>
@@ -76,3 +76,21 @@
   <p><%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
   <%#= link_to "Back", :back %> -->
+<script>
+
+  $(document).ready(function(){
+    $("#updateProfileFromID").validate({
+      debug: true,
+      rules: {
+        "user[user_name]": {required: true},
+        "user[mobile_no]": {required: true,number: true},
+        "user[first_name]": {required: true},
+        "user[last_name]": {required: true},
+        "user[address]": {required: true},
+        "user[password]": {required: true, equalTo: "#user_password_confirmation"},
+        "user[password_confirmation]": {required: true},
+        "user[email]": {required: true, email: true}
+      }
+    });
+  });
+</script>

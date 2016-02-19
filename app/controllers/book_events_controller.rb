@@ -1,6 +1,9 @@
 class BookEventsController < ApplicationController
   layout "customer_layout"
 
+	def index
+	end
+  	
 	def event_details
 		@event = BookEvent.all
 	end

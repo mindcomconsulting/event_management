@@ -8,22 +8,17 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     super
-    puts"1111111111111111i inside new on reg controller 111111111111111111111"
-
   end
 
   def edit
-    puts"000000000000000000 inside edit reg controller 0000000000000000000000000"
-    puts params
-
-    puts"000000000000000000 inside edit reg controller 0000000000000000000000000"
-
+    if params[:user]=='user'
+      render :layout=>'customer_layout'
+    else
+      render :layout=>'admin_layout'
+    end
   end
 
   def create
-    puts"2222222222222222222222222222222222222"
-    puts params
-    puts"2222222222222222222222222222222222222"
     @user=User.new(:email=>params[:user][:email],:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation],:user_name=>params[:user][:user_name],:first_name=>params[:user][:first_name],:middle_name=>params[:user][:middle_name],:last_name=>params[:user][:last_name],:mobile_no=>params[:user][:mobile_no],:address=>params[:user][:address],:user_login_type=>params[:user][:user_login_type])
     if @user.save
     redirect_to :controller=>'sessions', :action=>'new'
@@ -33,16 +28,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    puts"000000000000000000 inside update reg controller 0000000000000000000000000"
-    puts params
-    puts"000000000000000000 inside update reg controller 0000000000000000000000000"
     @user=User.find_by(:id=>params[:user][:id])
     # @user.update(:email=>params[:user][:email],:user_name=>params[:user][:user_name],:first_name=>params[:user][:first_name],:middle_name=>params[:user][:middle_name],:last_name=>params[:user][:last_name],:mobile_no=>params[:user][:mobile_no],:address=>params[:user][:address])
     # if params[:user][:password].present?
     #   @user.update(:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation])
     # end
-  
-
     @user.email=params[:user][:email]
     @user.user_name=params[:user][:user_name]
     @user.first_name=params[:user][:first_name]

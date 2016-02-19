@@ -19,11 +19,13 @@
           <td class="cust-layout-space">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/events">My Profile</a>
           <td>
-            <%= link_to 'Update profile', edit_user_registration_path, :class => 'navbar-link' %>
+            <%#= link_to "Add to cart", {:controller => "car", :action => "add_to_cart", :car => car.id }%>
+
+            <%= link_to 'Update profile', edit_user_registration_path(:user=>"user"), :class => 'navbar-link' %>
           </td>
           <td class="cust-layout-space">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="book_events/new_event">Book an Event</a>
+            <a href="/book_events/new_event">Book an Event</a>
           </td>
           <td class="cust-layout-space">
             &nbsp;&nbsp;&nbsp;<a href="/book_events/booking_status">Booking Status</a>

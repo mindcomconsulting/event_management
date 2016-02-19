@@ -21,7 +21,11 @@ class SessionsController < Devise::SessionsController
 	      session[:return_to] = nil
 	    else
 	      #respond_with resource, :location => after_sign_in_path_for(resource)
-	      redirect_to :controller=>'events',:action=>'index'
+	      if params[:user][:user_login_type]='user'
+	      	redirect_to :controller=>'book_events',:action=>'index'
+	      else
+	      	redirect_to :controller=>'events',:action=>'index'
+	      end
 	    end
 	end
 

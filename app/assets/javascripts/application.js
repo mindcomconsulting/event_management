@@ -16,8 +16,8 @@
 
 //= require jquery.ui.all
 //= require_self
-
-
+//= require jquery.validate
+//= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require_tree .
 
