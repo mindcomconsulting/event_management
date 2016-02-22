@@ -37,17 +37,15 @@
 	    	</td>
 	    </tr>
 	  <%end%>
-  </table>
-	<br/><br/>
-	<%@event_detail.each do |f|%>
-		<%image=Image.find_by(:imageable_id=>f.id)%>
-  	<tr>
-    	<td>
-    		<%= image_tag(image.image) %>
-    	</td>
-    </tr>
-  <%end%>
-  </table>
+	</table><br/><br/>
+  <div class="img-scroll-cls"> 
+	  <table>
+			<%@image.each do |f|%>
+   			<%= image_tag(f.image) %>
+		  <%end%>
+	 </table>
+  </div>
+
 <%else%>
  	<%="No Event Created For this Venue Please Select other Venue"%>
 <%end%>
@@ -77,4 +75,10 @@
  
 </script>
 
-	              
+<style type="text/css">
+.img-scroll-cls{
+    max-height: 225px;
+    overflow: auto;
+    max-width: 630px;
+  }
+</style>

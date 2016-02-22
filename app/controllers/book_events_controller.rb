@@ -12,12 +12,10 @@ class BookEventsController < ApplicationController
 		@event = BookEvent.new
 		@event_list = FunctionDetail.all.pluck(:name,:id)
 		@event_venue = Venue.all.pluck(:name,:id)
-		
 	end
 
 
 	def function_price
-		
 		if params[:request_by] =="function"
 			@result = Price.where(:function_id=>params[:function_id]).pluck(:price)
     elsif params[:request_by] =="venue"
@@ -30,11 +28,8 @@ class BookEventsController < ApplicationController
 
 	def create_events
 		book_event = BookEvent.new(event_params)
-		puts "===================="
-  	puts params
-  	puts "===================="
+		
 		if book_event.save
-			#equipment = book_event.function_equipment.new(equipment_params)
 			equipment = FunctionEquipment.new(:book_event_id=>book_event.id)
 			equipment.save
 			equipment.update(equipment_params)
@@ -44,7 +39,7 @@ class BookEventsController < ApplicationController
 		else
 			flash[:error]="There is some problem"
 		end
-		redirect_to :back
+		redirect_to :action=>'new_event'
   end 
 
   def booking_status
@@ -72,6 +67,7 @@ class BookEventsController < ApplicationController
 
 	def event_image
 		@event_detail = EventDetail.where(:function_id=>params[:function_id],:venu_id=>params[:venue_id])
+		@image = Image.where(:imageable_id=>@event_detail[0].id)
 		render :layout=>false
 	end
 

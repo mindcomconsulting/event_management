@@ -52,37 +52,6 @@
       </td>
     </tr>
     <tr>
-      <td>
-        <h3><%="Upload Venue Image" %></h3><span> *</span>
-      </td>
-    </tr>
-    
-       <tr>
-        <td>
-          <div class="scroll-cls"> 
-          <div id="cloneDIVID">
-            <table>
-              <tr>
-                <td>
-                  <%= f.file_field :image,:class=>"file-field-cls text-field-cls" %>
-                </td>
-              </tr><tr><td>
-                  <%= "Title" %><span> *</span>
-                  <%= f.text_field :title,:class=>"title-width-cls", :style=>"margin-bottom: 4px;" %>
-                </td>
-              </tr>
-          </table>
-        </div>
-        </div>
-        </td>
-      </tr>
-    <tr>
-      <td>
-        <a class="submit add_images_cls" style="margin-left: 48px;">Add More Image</a>
-      </td>
-    </tr>
-
-    <tr>
     	<td>
     		<div class="mg-div-cls">
     			<%= f.submit 'Submit', :class => 'submit' %>
@@ -111,14 +80,6 @@
     });
   });
 
-
-  $(".add_images_cls").on("click",function(){
-    var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
-    clone.find(".file-field-cls").val('');
-    clone.find(".title-width-cls").val('');
-
-    clone.insertAfter("div#cloneDIVID:last");
-  });
  
   function venueAddress(venue_Id){
     if(venue_Id !=''){

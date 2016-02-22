@@ -35,7 +35,7 @@
 		    		<%= f.try(:price_id) %>
 		    	</td>
 		    	<td>
-
+		    		<button title="upload photos" id="<%=raw f.id%>-uploadPhotoAlbumsBTNID" class="upload-albums-btn mg-icon-btn"><i class="fa fa-upload"></i></button>
 		    	</td>
 		    </tr>
 		    
@@ -49,25 +49,19 @@
 
 <script>
 
-	// $(document).on("click",".add-venue",function(){
-	//   var urlLink = "/events/add_venue";
-	//   $.ajax({
-	//     url: urlLink,
-	//     cache: false,
-	//     success: function(data){
-	//       $("#venueDIVID").dialog({
-	//         modal: true,
-	//         title: "Add Function",
-	//         minHeight: "auto",
-	//         minWidth: "auto",
-	//         open: function(){
-	//           $(this).html(data);
-	//         }
-	//       });
-	//     }
-	//   });
- //  });
+	$(document).on("click",".upload-albums-btn",function(){
+		var myID =$(this).attr('id');
+    var Id=myID.split("-");
+	  var urlLink = "/events/venue_image?id="+Id[0];
+	  window.location=urlLink;
+  });
+
+
  
 </script>
 
 	              
+<style type="text/css">
+
+	
+</style>

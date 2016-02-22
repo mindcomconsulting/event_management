@@ -102,6 +102,23 @@ class EventsController < ApplicationController
 		redirect_to :controller=>'events',:action=>'event_detail'
 	end
 
+	def venue_image
+		@venue_image = EventDetail.find_by(:id=>params[:id])
+		@image = Image.where(:imageable_id=>params[:id])
+		
+	end
+
+	def save_venue_image
+		
+		add_event = EventDetail.find_by(:id=>params[:venue_detail][:imageable_id])
+		@all_image = params[:ffff]
+		@all_image.each do |obj|
+			image = add_event.images.new(:image=>obj)
+			image.save
+		end
+		redirect_to :back
+	end
+
 	def venue_address
 		if params[:function]=="by_venue"
 			venue_address = Venue.find_by(:id=>params[:venue_id])
@@ -134,7 +151,12 @@ class EventsController < ApplicationController
 	end
 
 	def event_image
+		puts "0000000000000000000000000000000"
+		puts params
+		puts "0000000000000000000000000000000"
 		@event_detail = EventDetail.where(:function_id=>params[:function_id],:venu_id=>params[:venue_id])
+		@image = Image.where(:imageable_id=>@event_detail[0].id)
+		
 		render :layout=>false
 	end
 

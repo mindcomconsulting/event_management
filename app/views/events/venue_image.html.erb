@@ -1,0 +1,77 @@
+<%= form_for :venue_image, :url=>{:controller=>'events',:action=>'create_price' }, :html => {:id => "createPriceFromID"} do |f| %>
+  <div class="img-scroll-cls"> 
+    <%@image.each do |image|%>
+      <%=image_tag(image.image)%>
+    <% end %>
+</div>
+<% end %>
+ 
+<%= form_for :venue_detail, :url => {:controller=>'events',:action=>'save_venue_image' }, :html => {:id => "formValidateID",:multipart=> true} do |f| %>
+   <%=f.hidden_field :imageable_id,:value=>@venue_image.id%>
+  <table>
+    <tr>
+      <td>
+        <h3><%="Upload Venue Image" %></h3>
+      </td>
+    </tr>
+       <tr>
+        <td>
+          <div class="scroll-cls"> 
+          <div id="cloneDIVID">
+            <table>
+              <tr>
+                <td>
+                  <%= file_field_tag 'ffff[]',:class=>"file-field-cls text-field-cls" %>
+                </td>
+          </table>
+        </div>
+        </div>
+        </td>
+      </tr>
+    <tr>
+      <td>
+        <br/><a class="submit add_images_cls" style="margin-left: 48px;">Add More Image</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="mg-div-cls">
+          <%= f.submit 'Submit', :class => 'submit' %>
+          <%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+
+
+
+
+<script>
+  $(document).ready(function(){
+   $("#uploadImageFromID").validate({
+      debug: true,
+      rules: {
+        "venue_image[image[]]": {required: true}
+      }
+    });
+  })
+
+ $(".add_images_cls").on("click",function(){
+    var clone = $("#cloneDIVID").clone() //.insertAfter("div#cloneDIVID:last");
+    clone.find(".file-field-cls").val('');
+    clone.find(".title-width-cls").val('');
+
+    clone.insertAfter("div#cloneDIVID:last");
+  });
+</script>
+
+<style type="text/css">
+.img-scroll-cls{
+    max-height: 270px;
+    overflow: auto;
+    max-width: 630px;
+  }
+</style>

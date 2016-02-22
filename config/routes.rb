@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :book_events, :only=>[:index,:new]
 
 
+  get "/events/venue_image" => "events#venue_image", :as => "venue_image"
+  post "/events/save_venue_image" => "events#save_venue_image", :as => "save_venue_image"
   get "/events/event_image" => "events#event_image", :as => "event_image"
   get "/events/view_event_detail" => "events#view_event_detail", :as => "view_event_detail"
   get "/events/view_booking" => "events#view_booking", :as => "view_booking"

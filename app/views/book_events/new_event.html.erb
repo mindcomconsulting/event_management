@@ -1,183 +1,125 @@
 <div id="divScrollID">
   <h2>Book Event</h2>
-<%= form_for :book_event, :url=>{:controller=>'book_events',:action=>'create_events' }, :html => {:id=>"bookEventFormID",:multipart => true} do |f| %>
-  <%=f.hidden_field :user_id, :value => current_user.id%>
-  <%=f.hidden_field :status, :value => "pending"%>
-  <table>
-    <tr>
-      <td>
-        <%="Booking Id"%>
-      </td><td>
-        <%= f.text_field :booking_id,:class=>"text-field-cls" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Event Type" %>
-      </td><td>
-      <br/><%= f.select :function_id, options_for_select(@event_list),{:prompt=>"Select"}, {:onchange=>"selectFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Price/Per-Person" %>
-      </td><td>
-        <br/><%= f.text_field :price,:class=>"text-field-cls",:readonly=>true %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Event Venue" %>
-      </td><td>
-      <br/><%= f.select :venue_id, options_for_select(@event_venue),{:prompt=>"Select"}, {:onchange=>"venuFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-     <tr>
-      <td>
-        <br/><%="Address" %>
-      </td><td>
-        <br/><%= f.text_area :address,:class=>"text-field-cls",:readonly=>true %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="No of Guest" %>
-      </td><td>
-        <br/><%= f.text_field :no_of_guest,:class=>"text-width-cls" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Amount" %>
-      </td><td>
-        <br/><%= f.text_field :amount,:class=>"text-width-cls",:readonly=>true %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Date" %>
-      </td><td>
-        <br/><%= f.text_field :date,:class=>"text-width-cls" %>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Equipment" %>
-      </td><td>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.check_box :dj, {:class => ""}%>
-      <%="DJ"%>
-      </td>
-      <td>
-        <%= f.check_box :stage, {:class => ""} %>
-      <%="Stage"%>
-      </td>
-      <td>
-        <%= f.check_box :mike_speaker, {:class => ""} %>
-      <%="Mike and Speaker"%>
-      </td>
-    </tr>
-     <tr>
-      <td>
-        <br/><%="Food" %>
-      </td><td>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.check_box :break_fast, {:class => ""}%>
-      <%="Break Fast"%>&nbsp;&nbsp;&nbsp;&nbsp;
-      </td>
-      <td>
-        <%= f.check_box :lunch, {:class => ""} %>
-      <%="Lunch"%>
-      </td>
-      <td>
-        <%= f.check_box :tea_snack, {:class => ""} %>
-      <%="Tea and Snack"%>
-      </td>
-      <td>
-        <%= f.check_box :dinner, {:class => ""} %>
-      <%="Dinner"%>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.radio_button :food_type, 'veg'%>
-      <%="Only Veg"%>&nbsp;&nbsp;&nbsp;&nbsp;
-      </td>
-      <td>
-        <%= f.radio_button :food_type, 'nonveg'%>
-      <%="Only Non Veg"%>
-      </td>
-      <td>
-        <%= f.radio_button :food_type, 'veg_nonveg'%>
-      <%="Veg and Non Veg"%>
-      </td>
-    </tr>
-    <tr id="lunchTypeID" style="display: none;">
-      <td>
-        <br/><br/><%="Lunch Type" %>
-        </td><td>
-        <br/><br/><%= f.select :lunch_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",  class: 'text-width-cls'} %>
-      </td>
-      </tr>
-    <tr id="dinnerTypeID" style="display: none;">
-      <td>
-        <br/><%="Dinner Type" %>
-      </td><td>
-      <br/><%= f.select :dinner_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"", class: 'text-width-cls'} %>
-      </td>
-    </tr>
+  <%= form_for :book_event, :url=>{:controller=>'book_events',:action=>'create_events' },:html=>{:id=>"",:multipart => true} do |f| %>
+    <%=f.hidden_field :user_id, :value => current_user.id%>
+    <%=f.hidden_field :status, :value => "pending"%>
+    <div class="field">
+      <label for="booking_id"><%="Booking Id"%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :booking_id,:class=>"text-field-cls" %>
+    </div>
+    <div class="field">
+      <label for="event_type"><%=t("event_type")%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.select :function_id, options_for_select(@event_list),{:prompt=>"Select"}, {:onchange=>"selectFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
+    </div>
 
-     <tr>
-      <td>
-        <br/><%="Decoration" %>
-      </td><td>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Lighting" %>
-      </td><td>
-      <br/><%= f.select :light_type, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Flower" %>
-      </td><td>
-      <br/><%= f.select :flower_type, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Seating" %>
-      </td><td>
-      <br/><%= f.select :sitting_chair_type, options_for_select([["Chair","chair"],["Chair and Sofa","chair_sofa"],["Sofa","sofa"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <br/><%="Total" %>
-      </td><td>
-        <br/><%= f.text_field :total_amount,:class=>"text-field-cls" %>
-      </td>
-    </tr>
+    <div class="field">
+      <label for="per_person"><%=t("price/per_person")%></label>&nbsp;
+      <%= f.text_field :price,:class=>"text-field-cls",:readonly=>true %>
+    </div>
 
-    <tr>
-    	<td>
-    		<div class="">
-    			<br/><br/><%= f.submit 'Submit', :class => 'submit' %>
-    			<%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
-    		</div>
-    	</td>
-  	</tr>
-  </table>
-<% end %>
- 
+    <div class="field">
+      <label for="booking_id"><%=t("event_venue")%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.select :venue_id, options_for_select(@event_venue),{:prompt=>"Select"}, {:onchange=>"venuFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("address")%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_area :address,:class=>"text-field-cls",:readonly=>true %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("no_of_guest")%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :no_of_guest,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("amount")%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :amount,:class=>"text-width-cls",:readonly=>true %>
+    </div>
+    <div class="field">
+      <label for="booking_id"><%="Date"%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :date,:class=>"text-width-cls" %>
+    </div>
+
+
+    <div class="field">
+      <br/><label for="booking_id"><%=t("equipment")%></label>
+    </div>
+
+    <div class="field">
+      <%= f.check_box :dj, {:class => ""}%>&nbsp;
+      <label for="booking_id"><%="DJ"%></label>&nbsp;&nbsp;&nbsp;
+      <%= f.check_box :stage, {:class => ""} %>&nbsp;
+      <label for="booking_id"><%=t("stage")%></label>&nbsp;&nbsp;&nbsp;
+      <%= f.check_box :mike_speaker, {:class => ""} %>&nbsp;
+      <label for="booking_id"><%="Mike and Speaker"%></label>
+    </div>
+
+  <div class="field">
+      <label for="booking_id"><%=t("food")%></label>
+    </div>
+
+    <div class="field">
+      <%= f.check_box :break_fast, {:class => ""}%>&nbsp;
+      <label for="booking_id"><%=t("break_fast")%></label>&nbsp;&nbsp;&nbsp;
+      <%= f.check_box :lunch, {:class => ""} %>&nbsp;
+      <label for="booking_id"><%=t("lunch")%></label>&nbsp;&nbsp;&nbsp;
+      <%= f.check_box :tea_snack, {:class => ""} %>&nbsp;
+      <label for="booking_id"><%="Tea and Snack"%></label>&nbsp;&nbsp;&nbsp;
+          <%= f.check_box :dinner, {:class => ""} %>&nbsp;
+      <label for="booking_id"><%=t("dinner")%></label>
+    </div>
+
+
+    <div class="field">
+      <%= f.radio_button :food_type, 'veg'%>&nbsp;
+      <label for="booking_id"><%=t("only_veg")%></label>&nbsp;&nbsp;
+      <%= f.radio_button :food_type, 'nonveg'%>&nbsp;
+      <label for="booking_id"><%=t("only_non_veg")%></label>&nbsp;&nbsp;
+      <%= f.radio_button :food_type, 'veg_nonveg'%>&nbsp;
+      <label for="booking_id"><%="Veg and Nonveg"%></label>
+    </div>
+
+    <div class="field" id="lunchTypeID" style="display: none;">
+      <label for="booking_id"><%=t("lunch_type")%></label>&nbsp;
+      <%= f.select :lunch_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field" id="dinnerTypeID" style="display: none;">
+      <label for="booking_id"><%=t("dinner_type")%></label>&nbsp;
+      <%= f.select :dinner_type, options_for_select([["Normal","normal"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"", class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("decoration")%></label>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("lighting")%></label>&nbsp;
+      <%= f.select :light_type, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("flower")%></label>&nbsp;&nbsp;&nbsp;
+      <%= f.select :flower_type, options_for_select([["No","no"],["Deluxe","deluxe"],["Royale","royale"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("seating")%></label>&nbsp;&nbsp;
+      <%= f.select :sitting_chair_type, options_for_select([["Chair","chair"],["Chair and Sofa","chair_sofa"],["Sofa","sofa"]]),{:prompt=>"Select"}, {:onchange=>"",required: 'true',  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label for="booking_id"><%=t("total")%></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :total_amount,:class=>"text-field-cls" %>
+    </div>
+
+    <div class="field">
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.submit 'Submit', :class => 'submit' %>
+  		<%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
+  	</div>
+  <% end %>
 </div>
 
 

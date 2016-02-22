@@ -16,6 +16,8 @@
  *= require_self
  */
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 
 
@@ -24,6 +26,7 @@ html, body
     padding:0;
     margin:0;
     height:100%;
+    overflow-x:hidden;
   }
   #page
   {
@@ -255,3 +258,13 @@ div#containers{
   .error{
     color:red;
   }
+/*
+  .mg-icon-btn, .mg-icon-btn:hover, .mg-icon-btn:focus, .mg-icon-btn:visited {  
+    background: -moz-linear-gradient(center top , #dbe8f7, #92aecd) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    border: 1px solid #5f7a92 !important;
+    border-radius: 4px;
+    color: #1d212a !important;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 3.2px 5px !important;
+  }*/

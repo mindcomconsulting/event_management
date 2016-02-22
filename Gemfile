@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'jquery-validation-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'font-awesome-sass', '~> 4.5.0'
 
 
 # Use ActiveModel has_secure_password
