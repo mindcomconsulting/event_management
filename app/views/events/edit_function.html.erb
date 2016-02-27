@@ -1,0 +1,29 @@
+<%= form_for :function, :url => {:controller=>'events',:action=>'update_function' },:html=>{:id=>"editSubmitFromID"} do |f| %>
+  <%=f.hidden_field :id, :value=>params[:id]%>
+  <div class="field">
+    <%= f.label :name %><span> *</span><br/>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+  </div>
+ 
+  <div class="mg-div-cls">
+    <%= f.submit 'Submit', :class => 'submit' %>
+    <%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn" %>
+  </div>
+<% end %>
+ 
+
+
+<script>
+  $(document).ready(function(){
+    $("#functionSubmitFromID").validate({
+      debug: true,
+      rules: {
+        "venue_detail[name]": {required: true}
+      }
+    });
+  });
+</script>

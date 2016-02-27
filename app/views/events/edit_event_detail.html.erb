@@ -1,0 +1,140 @@
+<%= form_for :event_detail, :url => {:controller=>'events',:action=>'update_event_detail' },:html=>{:id=>"formValidateID",:multipart => true} do |f| %>
+  <%=f.hidden_field :id, :value=>params[:id]%>
+    
+    <div class="field">
+      <label><%="Select Function" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.select :function_id, options_for_select(@function,:selected=>@event_detail.function_id),{:prompt=>"Select"}, {:onchange=>"priceFunction(this.value)",  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label><%="Select Venue" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.select :venu_id, options_for_select(@venue,:selected=>@event_detail.venu_id),{:prompt=>"Select"}, {:onchange=>"venueAddresFunction(this.value)",required: 'true',  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label><%="Venue Address" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= text_area_tag :venue_address,nil,:class=>"text-field-cls",:disabled=>"disabled" %>
+    </div>
+
+    <div class="field">
+      <label><%="Phone No." %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :phone_number,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label><%="Mobile No." %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :mobile_number,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label> <%="Capacity" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :capacity,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label><%="Amount/Per Person" %><span>&nbsp;*</span></label>
+      <%= f.text_field :price_id,:class=>"text-width-cls"%><br/>
+    </div>
+
+    <div class="mg-div-cls">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.submit 'Submit', :class => 'submit' %>
+      <%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
+    </div>
+<% end %>
+ 
+
+<script>
+  $(document).ready(function(){
+
+    var function_id = $("#event_detail_function_id").val();
+    if(function_id !=''){
+      $('#event_detail_price_id').attr("disabled", "disabled"); 
+      var urlLink = "/events/venue_address";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"function_id":function_id,"function":"by_function"},
+        success: function(data){
+          var address =data["venue_address"] 
+          console.log(address);
+          if(address=='no data'){
+            $("#event_detail_price_id").val('')
+            $('#event_detail_price_id').attr("disabled", false);
+          }else{
+            $("#event_detail_price_id").val(address);
+          }
+        }
+      });
+    }
+
+    var venue_Id = $("#event_detail_venu_id").val();
+    if(venue_Id !=''){
+      var urlLink = "/events/venue_address";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"venue_id":venue_Id,"function":"by_venue"},
+        success: function(data){
+          var address =data["venue_address"] 
+          $("#venue_address").val(address);
+        }
+      });
+    }else{
+      $("#event_detail_venue_address").val('');
+    }
+
+
+
+
+    $("#formValidateID").validate({
+      //debug: true,
+      rules: {
+        "event_detail[venue_id]": {required: true},
+        "event_detail[mobile_number]": {required: true,number: true},
+        "event_detail[capacity]": {required: true,number: true},
+        "event_detail[price]": {required: true,number: true},
+        "event_detail[function_id]": {required: true,number: true},
+      }
+    });
+  });
+
+  function venueAddresFunction(venue_Id){
+    if(venue_Id !=''){
+      var urlLink = "/events/venue_address";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"venue_id":venue_Id,"function":"by_venue"},
+        success: function(data){
+          var address =data["venue_address"] 
+          $("#venue_address").val(address);
+        }
+      });
+    }else{
+      $("#event_detail_venue_address").val('');
+    }
+  }
+
+  function priceFunction(id){
+   if(id !=''){
+      $('#event_detail_price_id').attr("disabled", "disabled"); 
+      var urlLink = "/events/venue_address";
+      $.ajax({
+        url: urlLink,
+        cache: false,
+        data: {"function_id":id,"function":"by_function"},
+        success: function(data){
+          var address =data["venue_address"] 
+          console.log(address);
+          if(address!='no data'){
+            $("#event_detail_price_id").val(address);
+          }else{
+            $("#event_detail_price_id").val('')
+            $('#event_detail_price_id').attr("disabled", false); 
+          }
+        }
+      });
+    }
+  }
+</script>

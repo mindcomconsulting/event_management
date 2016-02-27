@@ -1,0 +1,31 @@
+<%#= form_for :venue_detail, :url=>{:controller=>'events',:action=>'create_venue' } do |f| %>
+<%= form_for :venue_detail, :url => {:controller=>'events',:action=>'update_venue' },:html=>{:id=>"venueSubmitFromID"} do |f| %>
+  <%=f.hidden_field :id, :value=>params[:id]%>
+  <div class="field">
+    <%= f.label :name %><span> *</span><br/>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br/>
+    <%= f.text_field :address %>
+  </div>
+ 
+  <div class="mg-div-cls">
+    <%= f.submit 'Submit', :class => 'submit' %>
+    <%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn" %>
+  </div>
+<% end %>
+ 
+
+
+<script>
+
+  $(document).ready(function(){
+    $("#venueSubmitFromID").validate({
+      debug: true,
+      rules: {
+        "venue_detail[name]": {required: true}
+      }
+    });
+  });
+</script>

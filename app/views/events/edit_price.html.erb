@@ -1,0 +1,35 @@
+<%= form_for :price, :url => {:controller=>'events',:action=>'update_price' },:html=>{:id=>"priceEditDetailID"} do |f| %>
+  <%=f.hidden_field :id, :value=>params[:id]%>
+  <div class="field">
+    <label><%="Function" %><span>&nbsp;*</span></label>
+    <%= f.select :function_id,options_for_select(@function),:prompt=>"Select",:onchange=>"" %><br/>
+  </div>
+
+  <div class="field">
+    <label><%="Price/Per-Persion" %><span>&nbsp;*</span></label>
+    <%= f.text_field :price %>
+  </div>
+ 
+  <div class="field">
+    <label><%="Description" %></label>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="mg-div-cls">
+    <%= f.submit 'Submit', :class => 'submit' %>
+    <%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn" %>
+  </div>
+<% end %>
+ 
+
+<script>
+  $(document).ready(function(){
+    $("#createdPriceFromID").validate({
+      debug: true,
+      rules: {
+        "price[function_id]": {required: true},
+        "price[price]": {required: true}
+      }
+    });
+  });
+</script>

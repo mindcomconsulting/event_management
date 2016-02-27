@@ -15,7 +15,10 @@
 		     	<td>
 		    		<%= f.try(:address) %>
 		    	</td>
-		    	<td></td>
+          <td>
+            <button title="edit" id="<%=raw f.id%>-editVenueBTNID" class="edit-venue-btn mg-icon-btn"><i class="fa fa-pencil-square-o"></i></button>
+            <button title="deleted" id="<%=raw f.id%>-deletevenueBTNID" class="delete-venue-btn mg-icon-btn"><i class="fa fa-trash"></i></button>
+          </td>
 		    </tr>
 		    
 		  <%end%>
@@ -25,6 +28,7 @@
 	<%end%>
 
 <div id="venueDIVID"></div>
+<div id="venueEditDIVID"></div>
 
 
 
@@ -49,6 +53,36 @@
 	  });
   });
  
+ $(document).on("click",".edit-venue-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/edit_venue?id="+Id[0];
+    $.ajax({
+      url: urlLink,
+      cache: false,
+      success: function(data){
+        $("#venueEditDIVID").dialog({
+          modal: true,
+          title: "Edit Venue Details",
+          minHeight: "auto",
+          minWidth: "auto",
+          open: function(){
+            $(this).html(data);
+          }
+        });
+      }
+    });
+  });
+
+ $(document).on("click",".delete-venue-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/delete_venue?id="+Id[0];
+    var result = confirm("Are you sure to delete");
+    if(result){
+      window.location=urlLink;
+    }
+  });
 </script>
 
 	              
