@@ -39,7 +39,7 @@ class BookEventsController < ApplicationController
 		else
 			flash[:error]="There is some problem"
 		end
-		redirect_to :action=>'new_event'
+		redirect_to :controller=>'book_events', :action=>'new_event'
   end 
 
   def booking_status

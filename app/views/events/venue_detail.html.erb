@@ -18,7 +18,10 @@
 		     	<td>
 		    		<%= f.try(:description) %>
 		    	</td>
-		    	<td></td>
+		    	<td>
+            <button title="edit" id="<%=raw f.id%>-editVenueBTNID" class="edit-function-btn mg-icon-btn"><i class="fa fa-pencil-square-o"></i></button>
+            <button title="deleted" id="<%=raw f.id%>-deletevenueBTNID" class="delete-function-btn mg-icon-btn"><i class="fa fa-trash"></i></button>
+          </td>
 		    </tr>
 		    
 		  <%end%>
@@ -29,6 +32,7 @@
 <!-- </div> -->
 
 <div id="functionID"></div>
+<div id="functionEditDIVID"></div>
 
 
 
@@ -51,6 +55,38 @@
 	      });
 	    }
 	  });
+  });
+
+
+  $(document).on("click",".edit-function-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/edit_function?id="+Id[0];
+    $.ajax({
+      url: urlLink,
+      cache: false,
+      success: function(data){
+        $("#functionEditDIVID").dialog({
+          modal: true,
+          title: "Edit Venue Details",
+          minHeight: "auto",
+          minWidth: "auto",
+          open: function(){
+            $(this).html(data);
+          }
+        });
+      }
+    });
+  });
+
+ $(document).on("click",".delete-function-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/delete_function?id="+Id[0];
+    var result = confirm("Are you sure to delete");
+    if(result){
+      window.location=urlLink;
+    }
   });
  
 </script>

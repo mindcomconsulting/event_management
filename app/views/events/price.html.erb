@@ -20,7 +20,10 @@
 		     	<td>
 		    		<%= f.try(:description) %>
 		    	</td>
-		    	<td></td>
+		    	<td>
+            <button title="edit" id="<%=raw f.id%>-editVenueBTNID" class="edit-price-btn mg-icon-btn"><i class="fa fa-pencil-square-o"></i></button>
+            <button title="deleted" id="<%=raw f.id%>-deletevenueBTNID" class="delete-price-btn mg-icon-btn"><i class="fa fa-trash"></i></button>
+          </td>
 		    </tr>
 		    
 		  <%end%>
@@ -30,6 +33,7 @@
 	<%end%>
 
 <div id="priceDIVID"></div>
+<div id="priceEditDIVID"></div>
 
 <!-- <a class="edit-student-admission mg-icon-btn" title="Edit" href="/mg_student_admissions/1/edit">
 
@@ -57,6 +61,36 @@
 	  });
   });
  
+ $(document).on("click",".edit-price-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/edit_price?id="+Id[0];
+    $.ajax({
+      url: urlLink,
+      cache: false,
+      success: function(data){
+        $("#priceEditDIVID").dialog({
+          modal: true,
+          title: "Edit Price Details",
+          minHeight: "auto",
+          minWidth: "auto",
+          open: function(){
+            $(this).html(data);
+          }
+        });
+      }
+    });
+  });
+
+ $(document).on("click",".delete-price-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/delete_price?id="+Id[0];
+    var result = confirm("Are you sure to delete");
+    if(result){
+      window.location=urlLink;
+    }
+  });
 </script>
 
 	              

@@ -35,15 +35,30 @@ Rails.application.routes.draw do
   post "/events/create_event" => "events#create_event", :as => "create_event"
   get "/events/add_event" => "events#add_event", :as => "add_event"
   get "/events/event_detail" => "events#event_detail", :as => "event_detail"
+
+  get "/events/edit_event_detail" => "events#edit_event_detail", :as => "edit_event_detail"
+  post "/events/update_event_detail" => "events#update_event_detail", :as => "update_event_detail"
+  get "/events/delete_event_detail" => "events#delete_event_detail", :as => "delete_event_detail"
+
   get "/events/add_venue" => "events#add_venue", :as => "add_venue"
   post "/events/create_venue" => "events#create_venue", :as => "create_venue"
+  get "/events/show_venue" => "events#show_venue", :as => "show_venue"
+  get "/events/edit_venue" => "events#edit_venue", :as => "edit_venue"
+  post "/events/update_venue" => "events#update_venue", :as => "update_venue"
+  get "/events/delete_venue" => "events#delete_venue", :as => "delete_venue"
   get "/events/venue" => "events#venue", :as => "venue"
   post "/events/create_price" => "events#create_price", :as => "create_price"
   get "/events/add_price" => "events#add_price", :as => "add_price"
   get "/events/price" => "events#price", :as => "price"
+  get "/events/edit_price" => "events#edit_price", :as => "edit_price"
+  post "/events/update_price" => "events#update_price", :as => "update_price"
+  get "/events/delete_price" => "events#delete_price", :as => "delete_price"
   post "/events/create_function" => "events#create_function", :as => "create_function"
   get "/events/function" => "events#function", :as => "function"
   get "/events/venue_detail" => "events#venue_detail", :as => "venue_detail"
+  get "/events/edit_function" => "events#edit_function", :as => "edit_function"
+  post "/events/update_function" => "events#update_function", :as => "update_function"
+  get "/events/delete_function" => "events#delete_function", :as => "delete_function"
   resources :events, :only=>[:index,:new]
 
   # Example of regular route:
