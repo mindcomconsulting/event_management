@@ -1,68 +1,47 @@
 <%= render :partial => 'events/event_left_menu' %><br/>
-<div id="divScrollID">
 <%= form_for :event_detail, :url=>{:controller=>'events',:action=>'create_event' }, :html => {:id => "createEventFromID",:multipart => true} do |f| %>
-  <table>
-    <tr>
-      <td>
-        <%="Select Venue"%><span> *</span>
-      </td><td>
-        <%= f.select :venue_id, options_for_select(@venue),{:prompt=>"Select"}, {:onchange=>"venueAddress(this.value)",required: 'true',  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%="Venue Address" %>
-      </td><td>
-        <%= f.text_area :venue_address,:class=>"text-field-cls",:readonly=>true %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%="Phone No." %>
-      </td><td>
-        <%= f.text_field :phone_number,:class=>"text-width-cls" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%="Mobile No." %><span> *</span>
-      </td><td>
-        <%= f.text_field :mobile_number,:class=>"text-width-cls" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%="Capacity" %><span> *</span>
-      </td><td>
-        <%= f.text_field :capacity,:class=>"text-width-cls" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%="Prefered For" %>
-      </td><td>
-        <%= f.select :function_id, options_for_select(@function),{:prompt=>"All"}, {:onchange=>"functionID(this.value)",  class: 'text-width-cls'} %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%="Amount/Per Person" %><span> *</span>
-        </td><td>
-        <%= f.text_field :price,:class=>"text-width-cls"%>
-      </td>
-    </tr>
-    <tr>
-    	<td>
-    		<div class="mg-div-cls">
-    			<%= f.submit 'Submit', :class => 'submit' %>
-    			<%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
-    		</div>
-    	</td>
-  	</tr>
-  </table>
+    <div class="field">
+      <label><%="Select Function" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.select :function_id, options_for_select(@function),{:prompt=>"Select"}, {:onchange=>"functionID(this.value)",  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label><%="Select Venue" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.select :venue_id, options_for_select(@venue),{:prompt=>"Select"}, {:onchange=>"venueAddress(this.value)",  class: 'text-width-cls'} %>
+    </div>
+
+    <div class="field">
+      <label><%="Venue Address" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_area :venue_address,:class=>"text-field-cls",:readonly=>true %>
+    </div>
+
+    <div class="field">
+      <label><%="Phone No." %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :phone_number,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label><%="Mobile No." %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :mobile_number,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label> <%="Capacity" %><span>&nbsp;*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.text_field :capacity,:class=>"text-width-cls" %>
+    </div>
+
+    <div class="field">
+      <label><%="Amount/Per Person" %><span>&nbsp;*</span></label>
+      <%= f.text_field :price,:class=>"text-width-cls"%><br/><br/>
+    </div>
+
+		<div class="mg-div-cls">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= f.submit 'Submit', :class => 'submit' %>
+			<%= link_to "cancel", {:controller=>'events',:action=>'venue'}, :class => "submit cancel-btn4" %>
+		</div>
 <% end %>
  
-</div>
 
 <script>
 
@@ -74,8 +53,7 @@
         "event_detail[mobile_number]": {required: true,number: true},
         "event_detail[capacity]": {required: true,number: true},
         "event_detail[price]": {required: true,number: true},
-        "event_detail[image]": {required: true},
-        "event_detail[title]": {required: true}
+        "event_detail[function_id]": {required: true,number: true}
       }
     });
   });
@@ -121,16 +99,3 @@
  
   
 </script>
-
-<style type="text/css">
-  .scroll-cls{
-    max-height: 140px;
-    overflow: auto;
-    max-width: 218px;
-  }
-
-  #divScrollID{
-    max-height: 470px;
-    overflow: auto;
-  }
-</style>

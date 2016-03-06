@@ -1,5 +1,7 @@
 <%= render :partial => 'events/event_left_menu' %><br/>
+  <div id="eventEditDIVID"></div>
   <%= link_to "Add Event", {:controller=>'events',:action=>'add_event'}, :class => "submit cancel-btn" %><br/><br/>
+
 	<%if @event_detail.length>0%>
 		<table class="event-table">
 			<tr>
@@ -36,6 +38,8 @@
 		    	</td>
 		    	<td>
 		    		<button title="upload photos" id="<%=raw f.id%>-uploadPhotoAlbumsBTNID" class="upload-albums-btn mg-icon-btn"><i class="fa fa-upload"></i></button>
+            <button title="edit" id="<%=raw f.id%>-editVenueBTNID" class="edit-event-details-btn mg-icon-btn"><i class="fa fa-pencil-square-o"></i></button>
+            <button title="deleted" id="<%=raw f.id%>-deletevenueBTNID" class="delete-event-details-btn mg-icon-btn"><i class="fa fa-trash"></i></button>
 		    	</td>
 		    </tr>
 		    
@@ -44,7 +48,6 @@
 	<%else%>
 	 	<%="No Event Created"%>
 	<%end%>
-
 
 
 <script>
@@ -56,12 +59,35 @@
 	  window.location=urlLink;
   });
 
+  $(document).on("click",".edit-event-details-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/edit_event_detail?id="+Id[0];
+    $.ajax({
+      url: urlLink,
+      cache: false,
+      success: function(data){
+        $("#eventEditDIVID").dialog({
+          modal: true,
+          title: "Edit Event Details",
+          minHeight: "auto",
+          minWidth: "auto",
+          open: function(){
+            $(this).html(data);
+          }
+        });
+      }
+    });
+  });
 
- 
+ $(document).on("click",".delete-event-details-btn",function(){
+    var myID =$(this).attr('id');
+    var Id=myID.split("-");
+    var urlLink = "/events/delete_event_detail?id="+Id[0];
+    var result = confirm("Are you sure to delete");
+    if(result){
+      window.location=urlLink;
+    }
+  });
 </script>
 
-	              
-<style type="text/css">
-
-	
-</style>
