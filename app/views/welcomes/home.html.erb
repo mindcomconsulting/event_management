@@ -1,38 +1,148 @@
-  <div id="page">
-    <header>
-      <div>
-    	  <a href="#"><img src="/assets/event.png"  style="width: 253px; height: 100px; padding: 2px 1px;" border=0>
-				</a>
-        <h2><a href="#" border=0><%="Event Management" %></a></h2>
-      </div>
-      <nav>
-        <table>
-          <tr>
-            <td class="right-padding">
-              <a href="/welcomes/home">Home</a>
-            </td>
-            <td class="right-padding">
-              <a href="#">Contact Us</a>
-            </td>
-            <td class="right-padding">
-              <a href="#">About Us</a>
-            </td>
-            <td>
-              <a href="/welcomes/home">Login</a>
-            </td>
-          </tr>
-        </table>
-      </nav>
-    </header>
-    <div id="containers" >
-    <body>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div id="zmain">
-        <a href="/users/sign_in?id=<%="admin"%>"><img src="/assets/admin.jpeg"  class="admin-cls" border=0></a>
-        <a href="/users/sign_in?id=<%="user"%>"><img src="/assets/cust1.jpeg"  class="customer-cls" border=0></a>
-        <a href="/users/sign_up"><img src="/assets/reg1.jpeg"  class="registration-cls" border=0></a>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logo Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link href="css/logo-nav.css" rel="stylesheet"> -->
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="#">
+                    <img src="http://placehold.it/150x50&text=Logo" alt="">
+                </a> -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Logo Nav by Start Bootstrap</h1>
+                <p>Note: You may need to adjust some CSS based on the size of your logo. The default logo size is 150x50 pixels.</p>
+            </div>
+        </div>
     </div>
-    <div id="footer"></div>
-  </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    
+
+    <!-- Bootstrap Core JavaScript -->
+   
 </body>
-</div>
+
+</html>
+
+<style type="text/css">
+body {
+    margin: 43px;
+}
+
+.navbar-nav {
+    float: left;
+    margin: 3px;
+}
+
+
+.nav {
+    list-style: none outside none;
+    margin-bottom: 0;
+    padding-left: 0px;
+}
+
+body {
+    color: #333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    line-height: 1.42857;
+}
+.navbar-nav > li > a {
+    text-transform: uppercase;
+    margin-top: 0px;
+    padding: 0px 150px;
+}
+.navbar-toggle {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 88px;
+    margin-top: 0;
+    padding: 9px 10px;
+    position: relative;
+    }
+    @media (min-width: 768px) and (max-width: 900px){
+
+        .navbar-nav > li > a {
+    margin-top: 0;
+    padding: 0 74px;
+    text-transform: uppercase;
+}
+
+    }
+    @media (min-width: 900px) and (max-width: 1000px){
+
+        .navbar-nav > li > a {
+    margin-top: 0;
+    padding: 0 85px;
+    text-transform: uppercase;
+}
+
+    }
+
+       @media (min-width: 320px) and (max-width: 360px){
+
+        .navbar-nav > li > a {
+    margin-top: 0;
+    padding: 0 0px;
+    text-transform: uppercase;
+    display: block;
+}
+
+    }
+</style>
